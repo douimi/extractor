@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}Report Results{% endblock %}
+
+{% block head %}
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-10">
+            <!-- Report Header -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-file-alt me-2"></i>Market Analysis Report
+                    </h4>
+                    <div>
+                        <button class="btn btn-light btn-sm me-2" onclick="window.print()">
+                            <i class="fas fa-print me-1"></i>Print Report
+                        </button>
+                        <a href="{{ url_for('main.index') }}" class="btn btn-light btn-sm">
+                            <i class="fas fa-arrow-left me-1"></i>Back to Generator
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="text-muted mb-3">Report Summary</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-globe-americas me-2 text-primary"></i>
+                                    <strong>Origin Country:</strong> {{ report_data.origin_country.code }}
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-globe me-2 text-primary"></i>
+                                    <strong>Destination Country:</strong> {{ report_data.destination_country.code }}
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-barcode me-2 text-primary"></i>
+                                    <strong>HS6 Codes:</strong> {{ report_data.hs6_codes|join(', ') }}
+                                </li>
+                                <li>
+                                    <i class="fas fa-industry me-2 text-primary"></i>
+                                    <strong>Sectors:</strong> {{ report_data.sectors|join(', ') }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-muted mb-3">Report Details</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-calendar me-2 text-primary"></i>
+                                    <strong>Generated:</strong> {{ report_data.generated_at }}
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-database me-2 text-primary"></i>
+                                    <strong>Data Source:</strong> Santander Trade Portal
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Origin Country Report -->
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-globe-americas me-2"></i>Origin Country: {{ report_data.origin_country.code }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% set data = report_data.origin_country.data %}
+                    {% include 'report_country_section.html' %}
+                </div>
+            </div>
+
+            <!-- Destination Country Report -->
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-globe me-2"></i>Destination Country: {{ report_data.destination_country.code }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% set data = report_data.destination_country.data %}
+                    {% include 'report_country_section.html' %}
+                </div>
+            </div>
+
+            <!-- Overall Report Conclusion -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-pie me-2"></i>Overall Market Analysis
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info mb-3">
+                        <i class="fas fa-info-circle me-2"></i>
+                        This comprehensive market analysis provides valuable insights for businesses considering expansion between {{ report_data.origin_country.code }} and {{ report_data.destination_country.code }}. The following recommendations are based on the collected data and market indicators.
+                    </div>
+                    
+                    <h6 class="text-primary mb-3">Key Findings</h6>
+                    <ul>
+                        <li>Origin Country: {{ report_data.origin_country.code }}</li>
+                        <li>Destination Country: {{ report_data.destination_country.code }}</li>
+                        <li>Target Sectors: {{ report_data.sectors|join(', ') }}</li>
+                        <li>HS6 Codes Analyzed: {{ report_data.hs6_codes|join(', ') }}</li>
+                    </ul>
+
+                    <h6 class="text-primary mb-3">Strategic Recommendations</h6>
+                    <ol>
+                        <li>Market Entry Strategy
+                            <ul>
+                                <li>Evaluate economic freedom scores of both countries</li>
+                                <li>Consider joint ventures if needed based on regulatory environments</li>
+                                <li>Focus on sectors with highest value-added contribution</li>
+                            </ul>
+                        </li>
+                        <li>Risk Management
+                            <ul>
+                                <li>Monitor political developments in both countries</li>
+                                <li>Account for currency exchange rates in financial planning</li>
+                                <li>Develop contingency plans for economic volatility</li>
+                            </ul>
+                        </li>
+                        <li>Operational Considerations
+                            <ul>
+                                <li>Adapt business models to both markets</li>
+                                <li>Consider employment regulations in both countries</li>
+                                <li>Develop strong local partnerships</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="alert alert-success mt-3">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        <strong>Next Steps:</strong>
+                        <ul class="mb-0">
+                            <li>Conduct detailed market research for specific products/services</li>
+                            <li>Develop country-specific marketing strategies</li>
+                            <li>Establish local partnerships and networks</li>
+                            <li>Create detailed implementation timelines</li>
+                            <li>Set up monitoring systems for market changes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    @media print {
+        .btn {
+            display: none !important;
+        }
+        .card {
+            border: none !important;
+        }
+        .card-header {
+            background-color: #fff !important;
+            color: #000 !important;
+        }
+    }
+    
+    .text-muted {
+        color: #6c757d !important;
+    }
+    
+    .text-primary {
+        color: #0d6efd !important;
+    }
+    
+    .card {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+    
+    .card-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+    
+    .list-unstyled li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .bg-primary {
+        background-color: #0d6efd !important;
+    }
+    
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    .alert {
+        margin-bottom: 1rem;
+    }
+
+    .alert i {
+        margin-right: 0.5rem;
+    }
+</style>
+{% endblock %} 

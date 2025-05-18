@@ -1,0 +1,379 @@
+<!-- General Information -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-gradient-primary text-white py-3">
+        <h6 class="mb-0">
+            <i class="fas fa-info-circle me-2"></i>General Information
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Official Name</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Official Name', 'N/A') }}</p>
+                </div>
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Capital</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Capital', 'N/A') }}</p>
+                </div>
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Population</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Population', 'N/A') }}</p>
+                </div>
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Area</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Area', 'N/A') }}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Type of State</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Type of State', 'N/A') }}</p>
+                </div>
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Head of State</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Head of State', 'N/A') }}</p>
+                </div>
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Next Election</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Next Election', 'N/A') }}</p>
+                </div>
+                <div class="info-item mb-3">
+                    <label class="text-muted small">Currency</label>
+                    <p class="mb-0 fw-bold">{{ data.get('Currency', 'N/A') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Economic Overview -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-gradient-info text-white py-3">
+        <h6 class="mb-0">
+            <i class="fas fa-chart-line me-2"></i>Economic Overview
+        </h6>
+    </div>
+    <div class="card-body">
+        <p class="lead mb-0">{{ data.get('Economic Overview', 'No economic overview available.') }}</p>
+    </div>
+</div>
+
+<!-- Economic Indicators -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-gradient-success text-white py-3">
+        <h6 class="mb-0">
+            <i class="fas fa-chart-bar me-2"></i>Economic Indicators
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="indicator-item mb-3">
+                    <label class="text-muted small">GDP</label>
+                    <h5 class="mb-0">{{ data.get('GDP', 'N/A') }}</h5>
+                </div>
+                <div class="indicator-item mb-3">
+                    <label class="text-muted small">GDP Growth</label>
+                    <h5 class="mb-0">{{ data.get('GDP Growth', 'N/A') }}</h5>
+                </div>
+                <div class="indicator-item mb-3">
+                    <label class="text-muted small">GDP per Capita</label>
+                    <h5 class="mb-0">{{ data.get('GDP per Capita', 'N/A') }}</h5>
+                </div>
+                <div class="indicator-item mb-3">
+                    <label class="text-muted small">Inflation Rate</label>
+                    <h5 class="mb-0">{{ data.get('Inflation Rate', 'N/A') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="indicator-item mb-3">
+                    <label class="text-muted small">Unemployment Rate</label>
+                    <h5 class="mb-0">{{ data.get('Unemployment Rate', 'N/A') }}</h5>
+                </div>
+                <div class="indicator-item mb-3">
+                    <label class="text-muted small">Current Account</label>
+                    <h5 class="mb-0">{{ data.get('Current Account', 'N/A') }}</h5>
+                </div>
+                <div class="indicator-item mb-3">
+                    <label class="text-muted small">Exchange Rates</label>
+                    <h5 class="mb-0">{{ data.get('Exchange Rates', 'N/A') }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Business Environment -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-gradient-warning text-white py-3">
+        <h6 class="mb-0">
+            <i class="fas fa-building me-2"></i>Business Environment
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="score-item mb-3">
+                    <label class="text-muted small">Business Environment Score</label>
+                    <h4 class="mb-0">{{ data.get('Business Environment Score', 'N/A') }}</h4>
+                    <small class="text-muted">World Rank: {{ data.get('Business Environment World Rank', 'N/A') }}</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="score-item mb-3">
+                    <label class="text-muted small">Economic Freedom Score</label>
+                    <h4 class="mb-0">{{ data.get('Economic Freedom Score', 'N/A') }}</h4>
+                    <small class="text-muted">World Rank: {{ data.get('Economic Freedom World Rank', 'N/A') }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- International Trade Profile -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-gradient-danger text-white py-3">
+        <h6 class="mb-0">
+            <i class="fas fa-exchange-alt me-2"></i>International Trade Profile
+        </h6>
+    </div>
+    <div class="card-body">
+        <!-- Foreign Trade Values -->
+        {% if data.get('international_business', {}).get('Foreign Trade Values') %}
+        <div class="mb-4">
+            <h6 class="text-primary mb-3">Foreign Trade Values</h6>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            {% for key in data['international_business']['Foreign Trade Values'][0].keys() %}
+                            <th class="text-nowrap">{{ key }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data['international_business']['Foreign Trade Values'] %}
+                        <tr>
+                            {% for value in row.values() %}
+                            <td class="text-nowrap">{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Foreign Trade Indicators -->
+        {% if data.get('international_business', {}).get('Foreign Trade Indicators') %}
+        <div class="mb-4">
+            <h6 class="text-primary mb-3">Foreign Trade Indicators</h6>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            {% for key in data['international_business']['Foreign Trade Indicators'][0].keys() %}
+                            <th class="text-nowrap">{{ key }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data['international_business']['Foreign Trade Indicators'] %}
+                        <tr>
+                            {% for value in row.values() %}
+                            <td class="text-nowrap">{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Main Trading Partners -->
+        <div class="row">
+            <!-- Main Customers -->
+            <div class="col-md-6">
+                {% if data.get('international_business', {}).get('Main Customers') %}
+                <div class="mb-4">
+                    <h6 class="text-primary mb-3">Main Customers</h6>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    {% for key in data['international_business']['Main Customers'][0].keys() %}
+                                    <th class="text-nowrap">{{ key }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in data['international_business']['Main Customers'][:5] %}
+                                <tr>
+                                    {% for value in row.values() %}
+                                    <td class="text-nowrap">{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Main Suppliers -->
+            <div class="col-md-6">
+                {% if data.get('international_business', {}).get('Main Suppliers') %}
+                <div class="mb-4">
+                    <h6 class="text-primary mb-3">Main Suppliers</h6>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    {% for key in data['international_business']['Main Suppliers'][0].keys() %}
+                                    <th class="text-nowrap">{{ key }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in data['international_business']['Main Suppliers'][:5] %}
+                                <tr>
+                                    {% for value in row.values() %}
+                                    <td class="text-nowrap">{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Main Services -->
+        <div class="row">
+            <!-- Main Services Exported -->
+            <div class="col-md-6">
+                {% if data.get('international_business', {}).get('Main Services Exported') %}
+                <div class="mb-4">
+                    <h6 class="text-primary mb-3">Main Services Exported</h6>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    {% for key in data['international_business']['Main Services Exported'][0].keys() %}
+                                    <th class="text-nowrap">{{ key }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in data['international_business']['Main Services Exported'][:5] %}
+                                <tr>
+                                    {% for value in row.values() %}
+                                    <td class="text-nowrap">{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Main Services Imported -->
+            <div class="col-md-6">
+                {% if data.get('international_business', {}).get('Main Services Imported') %}
+                <div class="mb-4">
+                    <h6 class="text-primary mb-3">Main Services Imported</h6>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    {% for key in data['international_business']['Main Services Imported'][0].keys() %}
+                                    <th class="text-nowrap">{{ key }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in data['international_business']['Main Services Imported'][:5] %}
+                                <tr>
+                                    {% for value in row.values() %}
+                                    <td class="text-nowrap">{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Data Sources -->
+        {% if data.get('international_business', {}).get('Sources') %}
+        <div class="mt-4 pt-3 border-top">
+            <h6 class="text-primary mb-3">Data Sources</h6>
+            <div class="row">
+                {% for source_name, source in data['international_business']['Sources'].items() %}
+                <div class="col-md-6 mb-2">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-database text-muted me-2"></i>
+                        <div>
+                            <strong class="d-block">{{ source_name }}</strong>
+                            <small class="text-muted">{{ source }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Add custom styles -->
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #4e73df 0%, #224abe 100%);
+}
+.bg-gradient-info {
+    background: linear-gradient(45deg, #36b9cc 0%, #1a8eaf 100%);
+}
+.bg-gradient-success {
+    background: linear-gradient(45deg, #1cc88a 0%, #13855c 100%);
+}
+.bg-gradient-warning {
+    background: linear-gradient(45deg, #f6c23e 0%, #dda20a 100%);
+}
+.bg-gradient-danger {
+    background: linear-gradient(45deg, #e74a3b 0%, #be2617 100%);
+}
+.card {
+    border: none;
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.table {
+    margin-bottom: 0;
+}
+.table th {
+    font-weight: 600;
+    background-color: #f8f9fc;
+}
+.info-item, .indicator-item, .score-item {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f8f9fc;
+}
+.indicator-item h5, .score-item h4 {
+    color: #4e73df;
+}
+</style> 

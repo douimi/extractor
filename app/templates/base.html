@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Marketing Automation Report Generator{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), #34495e);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), #2980b9);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: var(--gradient-primary) !important;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 0;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: white !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            transition: var(--transition);
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: var(--border-radius);
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            flex: 1;
+            padding: 0;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            background: white;
+            box-shadow: var(--box-shadow);
+            margin: 2rem;
+            border-radius: var(--border-radius);
+        }
+
+        .card {
+            border: none;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            background: white;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+            padding: 1.5rem;
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        .card-header h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+            background: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-control, .select2-container--bootstrap-5 .select2-selection {
+            border-radius: var(--border-radius);
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            transition: var(--transition);
+            font-size: 1rem;
+            background: #f8f9fa;
+        }
+
+        .form-control:focus, .select2-container--bootstrap-5 .select2-selection:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
+            background: white;
+        }
+
+        .btn-primary {
+            background: var(--gradient-secondary);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .alert {
+            border-radius: var(--border-radius);
+            border: none;
+            box-shadow: var(--box-shadow);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .alert i {
+            font-size: 1.25rem;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+        }
+
+        .loading-content {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-secondary);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        .loading-text {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Progress Page Styles */
+        .progress-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 10000;
+            display: none;
+            overflow-y: auto;
+            backdrop-filter: blur(8px);
+        }
+
+        .progress-page-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-secondary);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            opacity: 0.5;
+            transform: translateX(-20px);
+            transition: var(--transition);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            background: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-secondary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .progress-step.active {
+            opacity: 1;
+            transform: translateX(0);
+            background: white;
+            box-shadow: var(--box-shadow);
+        }
+
+        .progress-step.active::before {
+            opacity: 1;
+        }
+
+        .progress-step.completed {
+            opacity: 0.8;
+            background: #f8f9fa;
+        }
+
+        .progress-step-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-step-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .progress-step.completed .progress-step-icon {
+            background: var(--gradient-primary);
+        }
+
+        .progress-step-content {
+            flex-grow: 1;
+        }
+
+        .progress-step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .progress-step-description {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .progress-step-details {
+            background: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 0.75rem;
+            display: none;
+            border-left: 4px solid var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        .progress-step.active .progress-step-details {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-animation {
+            width: 100%;
+            height: 6px;
+            background: #f0f0f0;
+            margin: 2rem 0;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-animation-bar {
+            height: 100%;
+            background: var(--gradient-secondary);
+            width: 30%;
+            position: absolute;
+            left: -30%;
+            animation: progress-slide 1.5s ease-in-out infinite;
+            border-radius: 3px;
+        }
+
+        @keyframes progress-slide {
+            0% {
+                left: -30%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Select2 Customization */
+        .select2-container--bootstrap-5 .select2-selection {
+            min-height: 45px;
+            border: 2px solid #e9ecef;
+            background: #f8f9fa;
+        }
+
+        .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered {
+            padding: 0.5rem;
+        }
+
+        .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__choice {
+            background: var(--gradient-secondary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0.25rem 0.75rem;
+            margin: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__choice__remove {
+            color: white;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .select2-container--bootstrap-5 .select2-dropdown {
+            border: 2px solid var(--secondary-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            background: white;
+        }
+
+        .select2-container--bootstrap-5 .select2-results__option--highlighted {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        .select2-container--bootstrap-5 .select2-results__option {
+            padding: 0.75rem 1rem;
+            transition: var(--transition);
+        }
+
+        .select2-container--bootstrap-5 .select2-results__option:hover {
+            background: #f8f9fa;
+        }
+
+        /* Flash Messages */
+        .flash-messages {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 350px;
+        }
+
+        .flash-message {
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: var(--transition);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            background: white;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .flash-message.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .flash-message i {
+            font-size: 1.25rem;
+            margin-right: 0.75rem;
+        }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <!-- Progress Page -->
+    <div class="progress-page">
+        <div class="progress-page-content">
+            <h2 class="mb-4">
+                <i class="fas fa-chart-line me-2"></i>Generating Your Market Report
+            </h2>
+            
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="urlsProcessed">0/3</div>
+                    <div class="stat-label">Data Sources Scraped</div>
+                </div>
+            </div>
+
+            <div class="progress-animation">
+                <div class="progress-animation-bar"></div>
+            </div>
+
+            <div id="progressSteps">
+                <!-- Steps will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                <i class="fas fa-chart-line me-2"></i>Report Generator
+            </a>
+            <div class="navbar-nav ms-auto">
+                {% if current_user.is_authenticated %}
+                    <span class="nav-item nav-link">
+                        <i class="fas fa-user me-2"></i>{{ current_user.username }}
+                    </span>
+                    <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                    </a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{{ url_for('auth.login') }}">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container content">
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show flash-message" role="alert">
+                            {% if category == 'error' %}
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                            {% elif category == 'success' %}
+                                <i class="fas fa-check-circle me-2"></i>
+                            {% else %}
+                                <i class="fas fa-info-circle me-2"></i>
+                            {% endif %}
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="loading-overlay">
+        <div class="loading-content">
+        <div class="loading-spinner"></div>
+            <div class="loading-text">Processing your request...</div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        // Show flash messages with animation
+        $(document).ready(function() {
+            $('.flash-message').each(function(index) {
+                var $this = $(this);
+                setTimeout(function() {
+                    $this.addClass('show');
+                }, index * 100);
+            });
+
+            // Auto-hide flash messages after 5 seconds
+            setTimeout(function() {
+                $('.flash-message').each(function(index) {
+                    var $this = $(this);
+                    setTimeout(function() {
+                        $this.removeClass('show');
+                        setTimeout(function() {
+                            $this.remove();
+                        }, 300);
+                    }, index * 100);
+                });
+            }, 5000);
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

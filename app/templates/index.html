@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Report Generator - Marketing Automation Report Generator{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        <i class="fas fa-file-alt"></i>
+                        Generate Marketing Report
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form id="reportForm" method="POST" action="{{ url_for('main.generate_report') }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="origin_country" class="form-label">
+                                        <i class="fas fa-globe-americas"></i>
+                                        Origin Country
+                                    </label>
+                                    <select class="form-control" id="origin_country" name="origin_country" required>
+                                        <option value="">Select Origin Country</option>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="GB">United Kingdom</option>
+                                        <option value="FR">France</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="IT">Italy</option>
+                                        <option value="ES">Spain</option>
+                                        <option value="CN">China</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="KR">South Korea</option>
+                                        <option value="IN">India</option>
+                                        <option value="BR">Brazil</option>
+                                        <option value="MX">Mexico</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="ZA">South Africa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="destination_country" class="form-label">
+                                        <i class="fas fa-globe"></i>
+                                        Destination Country
+                                    </label>
+                                    <select class="form-control" id="destination_country" name="destination_country" required>
+                                        <option value="">Select Destination Country</option>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="GB">United Kingdom</option>
+                                        <option value="FR">France</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="IT">Italy</option>
+                                        <option value="ES">Spain</option>
+                                        <option value="CN">China</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="KR">South Korea</option>
+                                        <option value="IN">India</option>
+                                        <option value="BR">Brazil</option>
+                                        <option value="MX">Mexico</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="ZA">South Africa</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="hs6_code" class="form-label">
+                                        <i class="fas fa-barcode"></i>
+                                        HS6 Product Code
+                                    </label>
+                                    <select class="form-control" id="hs6_code" name="hs6_code" required>
+                                        <option value="">Select HS6 Code</option>
+                                        <optgroup label="Agricultural Products">
+                                            <option value="010121">010121 - Pure-bred breeding horses</option>
+                                            <option value="010129">010129 - Live horses, except pure-bred breeding</option>
+                                            <option value="020110">020110 - Fresh/chilled bovine carcasses</option>
+                                            <option value="020120">020120 - Fresh/chilled bovine cuts, bone in</option>
+                                        </optgroup>
+                                        <optgroup label="Food Products">
+                                            <option value="160100">160100 - Sausages and similar products</option>
+                                            <option value="160231">160231 - Prepared turkey meat</option>
+                                            <option value="160232">160232 - Prepared chicken meat</option>
+                                            <option value="160239">160239 - Other prepared poultry meat</option>
+                                        </optgroup>
+                                        <optgroup label="Textiles">
+                                            <option value="500100">500100 - Silk-worm cocoons</option>
+                                            <option value="500200">500200 - Raw silk</option>
+                                            <option value="500300">500300 - Silk waste</option>
+                                            <option value="500400">500400 - Silk yarn</option>
+                                        </optgroup>
+                                        <optgroup label="Metals">
+                                            <option value="720110">720110 - Non-alloy pig iron ≥0.5% phosphorus</option>
+                                            <option value="720120">720120 - Non-alloy pig iron <0.5% phosphorus</option>
+                                            <option value="720150">720150 - Alloy pig iron; spiegeleisen</option>
+                                            <option value="720210">720210 - Ferro-manganese >2% carbon</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="sector" class="form-label">
+                                        <i class="fas fa-industry"></i>
+                                        Sector
+                                    </label>
+                                    <select class="form-control" id="sector" name="sector" required>
+                                        <option value="">Select Sector</option>
+                                        <option value="agriculture">Agriculture & Farming</option>
+                                        <option value="manufacturing">Manufacturing & Production</option>
+                                        <option value="technology">Technology & Electronics</option>
+                                        <option value="healthcare">Healthcare & Pharmaceuticals</option>
+                                        <option value="energy">Energy & Utilities</option>
+                                        <option value="construction">Construction & Real Estate</option>
+                                        <option value="retail">Retail & Consumer Goods</option>
+                                        <option value="transportation">Transportation & Logistics</option>
+                                        <option value="financial">Financial Services</option>
+                                        <option value="education">Education & Training</option>
+                                        <option value="food">Food & Beverage</option>
+                                        <option value="textile">Textile & Apparel</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-sync-alt me-2"></i>
+                                Generate Report
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="card mt-4" style="display: none;">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar"></i>
+                        Report Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="resultsContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#reportForm').on('submit', function(e) {
+        $('.loading-overlay').css('display', 'flex');
+    });
+
+    $(document).ajaxComplete(function() {
+        setTimeout(() => {
+            $('.loading-overlay').fadeOut();
+        }, 500);
+    });
+});
+</script>
+{% endblock %} 
