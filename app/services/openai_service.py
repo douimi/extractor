@@ -1,5 +1,5 @@
 import os
-import openai
+from openai import OpenAI
 import logging
 from typing import Dict, List, Any, Optional
 
@@ -12,12 +12,26 @@ class OpenAIService:
         self.api_key = os.getenv('OPENAI_API_KEY')
         if not self.api_key:
             raise ValueError("OpenAI API key not found in environment variables")
-        openai.api_key = self.api_key
+        self.client = OpenAI(api_key=self.api_key)
 
     def is_configured(self) -> bool:
         """Check if the OpenAI service is properly configured."""
-        return self.api_key is not None
+        return self.api_key is not None and self.client is not None
     
+    def _create_completion(self, messages: List[Dict[str, str]], max_tokens: int = 500) -> str:
+        """Helper method to create chat completions with error handling."""
+        try:
+            response = self.client.chat.completions.create(
+                model="gpt-4",
+                messages=messages,
+                temperature=0.7,
+                max_tokens=max_tokens
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            logger.error(f"Error in OpenAI API call: {str(e)}")
+            raise
+
     def generate_section_introduction(self, country: str, section_name: str, section_data: Dict) -> str:
         """Generate a dynamic introduction for a section of the report.
         
@@ -51,19 +65,13 @@ class OpenAIService:
             Do not use placeholders or variables - incorporate the actual data values into your text.
             """
             
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a professional market analyst writing a report section."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=500
-            )
+            response = self._create_completion([
+                {"role": "system", "content": "You are a professional market analyst writing a report section."},
+                {"role": "user", "content": prompt}
+            ])
             
-            introduction = response.choices[0].message.content.strip()
             logger.info(f"Generated introduction for {section_name} section for {country}")
-            return introduction
+            return response
             
         except Exception as e:
             logger.error(f"Error generating section introduction: {str(e)}")
@@ -100,19 +108,13 @@ class OpenAIService:
             Keep your response under 100 words and focus on concrete takeaways.
             """
             
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a professional market analyst writing a report section."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=500
-            )
+            response = self._create_completion([
+                {"role": "system", "content": "You are a professional market analyst writing a report section."},
+                {"role": "user", "content": prompt}
+            ])
             
-            insights = response.choices[0].message.content.strip()
             logger.info(f"Generated insights for {section_name} section for {country}")
-            return insights
+            return response
             
         except Exception as e:
             logger.error(f"Error generating section insights: {str(e)}")
@@ -170,21 +172,14 @@ class OpenAIService:
             Each recommendation should be 1-2 sentences long, specific to {country}, and reference actual data points.
             """
             
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a professional market analyst writing a report section."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=500
-            )
-            
-            recommendations_text = response.choices[0].message.content.strip()
+            response = self._create_completion([
+                {"role": "system", "content": "You are a professional market analyst writing a report section."},
+                {"role": "user", "content": prompt}
+            ])
             
             # Parse bullet points into a list
             recommendations = []
-            for line in recommendations_text.split('\n'):
+            for line in response.split('\n'):
                 line = line.strip()
                 if line and (line.startswith('-') or line.startswith('•') or (len(line) > 2 and line[0].isdigit() and line[1] == '.')):
                     recommendations.append(line.lstrip('-•0123456789. '))
@@ -280,17 +275,10 @@ class OpenAIService:
             Each recommendation should be one sentence, actionable, and based on the data provided.
             """
             
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a professional market analyst writing a report section."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=500
-            )
-            
-            recommendations_text = response.choices[0].message.content.strip()
+            response = self._create_completion([
+                {"role": "system", "content": "You are a professional market analyst writing a report section."},
+                {"role": "user", "content": prompt}
+            ])
             
             # Parse the recommendations by category
             categories = {
@@ -300,7 +288,7 @@ class OpenAIService:
             }
             
             current_category = None
-            for line in recommendations_text.split('\n'):
+            for line in response.split('\n'):
                 line = line.strip()
                 if not line:
                     continue
@@ -364,7 +352,6 @@ class OpenAIService:
     def generate_report_sections(self, report_data: Dict) -> Dict[str, str]:
         """Generate introduction and conclusion sections for the report using OpenAI."""
         try:
-            # Extract relevant data for the prompt
             country = report_data['country']['code']
             country_data = report_data['country']['data']
             origin_country = report_data['origin_country_code']
@@ -405,31 +392,19 @@ class OpenAIService:
             Keep the tone professional and actionable, with a length of about 250 words.
             """
 
-            # Generate introduction
-            intro_response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a professional market analyst writing a report section."},
-                    {"role": "user", "content": intro_prompt}
-                ],
-                temperature=0.7,
-                max_tokens=500
-            )
+            introduction = self._create_completion([
+                {"role": "system", "content": "You are a professional market analyst writing a report section."},
+                {"role": "user", "content": intro_prompt}
+            ])
 
-            # Generate conclusion
-            conclusion_response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a professional market analyst writing a report section."},
-                    {"role": "user", "content": conclusion_prompt}
-                ],
-                temperature=0.7,
-                max_tokens=500
-            )
+            conclusion = self._create_completion([
+                {"role": "system", "content": "You are a professional market analyst writing a report section."},
+                {"role": "user", "content": conclusion_prompt}
+            ])
 
             return {
-                'introduction': intro_response.choices[0].message.content.strip(),
-                'conclusion': conclusion_response.choices[0].message.content.strip()
+                'introduction': introduction,
+                'conclusion': conclusion
             }
 
         except Exception as e:
@@ -442,12 +417,10 @@ class OpenAIService:
     def generate_executive_summary(self, report_data: Dict) -> Optional[str]:
         """Generate an executive summary for the report using OpenAI."""
         try:
-            # Extract relevant data
             country = report_data['country']['code']
             country_data = report_data['country']['data']
             origin_country = report_data['origin_country_code']
 
-            # Create the executive summary prompt
             summary_prompt = f"""
             Create a concise executive summary for a market analysis report about {country}.
             This report is prepared for a company from {origin_country}.
@@ -466,17 +439,10 @@ class OpenAIService:
             Keep it professional and concise, around 150 words.
             """
 
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a professional market analyst writing an executive summary."},
-                    {"role": "user", "content": summary_prompt}
-                ],
-                temperature=0.7,
-                max_tokens=300
-            )
-
-            return response.choices[0].message.content.strip()
+            return self._create_completion([
+                {"role": "system", "content": "You are a professional market analyst writing an executive summary."},
+                {"role": "user", "content": summary_prompt}
+            ], max_tokens=300)
 
         except Exception as e:
             logger.error(f"Error generating executive summary with OpenAI: {str(e)}")

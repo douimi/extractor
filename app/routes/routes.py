@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, session, make_response
+from flask import render_template, request, redirect, url_for, flash, session, make_response, jsonify
 from flask_login import login_required, current_user
 from app.routes import bp
 from app.services.report_service import ReportService
@@ -96,6 +96,70 @@ def view_report():
     
     # Create a copy of the report data to prevent session modification
     report_data_copy = dict(report_data)
-    logger.info(f"Report data copied. Origin: {report_data_copy.get('origin_country', {}).get('code')}, Destination: {report_data_copy.get('destination_country', {}).get('code')}")
+    logger.info(f"Report data copied. Origin: {report_data_copy.get('origin_country')}, Destination: {report_data_copy.get('destination_country')}")
     
-    return render_template('report.html', report_data=report_data_copy) 
+    return render_template('report.html', report_data=report_data_copy)
+
+@bp.route('/api/initialize-report', methods=['POST'])
+@login_required
+def api_initialize_report():
+    try:
+        data = request.get_json()
+        country_code = data.get('country_code')
+        if not country_code:
+            return jsonify({'status': 'error', 'message': 'Missing country_code'}), 400
+        
+        report_service = ReportService()
+        result = report_service.initialize_report_generation(country_code)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)})
+
+@bp.route('/api/generate-section', methods=['POST'])
+@login_required
+def api_generate_section():
+    try:
+        data = request.get_json()
+        section_name = data.get('section_name')
+        country_code = data.get('country_code')
+        origin_country = data.get('origin_country')
+        if not section_name or not country_code:
+            return jsonify({'status': 'error', 'message': 'Missing section_name or country_code'}), 400
+        
+        report_service = ReportService()
+        result = report_service.generate_section(section_name, country_code)
+        
+        # Store section data in session
+        if result['status'] == 'success':
+            if 'report_sections' not in session:
+                session['report_sections'] = {}
+            session['report_sections'][section_name] = result
+            session.modified = True
+        
+        # If this is the last section, clean up and prepare report data
+        if section_name == 'international_business' and result['status'] == 'success':
+            report_service.cleanup_report_generation()
+            
+            # Prepare complete report data
+            report_data = {
+                'report_id': str(uuid.uuid4()),
+                'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'sections': session.get('report_sections', {}),
+                'destination_country': country_code,  # Store as simple string
+                'origin_country': origin_country,    # Store as simple string
+                'report_type': 'Market Analysis Report'
+            }
+            session['report_data'] = report_data
+            session.modified = True
+            
+            # Clear sections data
+            if 'report_sections' in session:
+                del session['report_sections']
+            
+            # Add redirect flag to response
+            result['redirect'] = url_for('main.view_report')
+            
+        return jsonify(result)
+    except Exception as e:
+        logger.error(f"Error in generate_section: {str(e)}")
+        return jsonify({'status': 'error', 'message': str(e)}) 

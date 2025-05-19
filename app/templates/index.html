@@ -157,25 +157,271 @@
     </div>
 </div>
 
-<!-- Loading Overlay -->
-<div class="loading-overlay" style="display: none;">
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
+<!-- Full-Page Loading Overlay -->
+<div id="fullLoadingOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.95); z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
+    <div class="loader-animation">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
     </div>
+    <div class="mt-4 text-primary fw-bold fs-4">Generating your report...</div>
+    <div class="mt-2 text-muted">This may take up to a minute. Please do not close the window.</div>
 </div>
+{% endblock %}
+
+{% block styles %}
+<style>
+.loader-animation {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.loader-animation .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(45deg, #4e73df, #224abe);
+    box-shadow: 0 0 10px rgba(78, 115, 223, 0.3);
+    animation: pulse 1.5s infinite cubic-bezier(.4,0,.6,1);
+}
+
+.loader-animation .dot:nth-child(2) {
+    animation-delay: 0.2s;
+    background: linear-gradient(45deg, #36b9cc, #258391);
+    box-shadow: 0 0 10px rgba(54, 185, 204, 0.3);
+}
+
+.loader-animation .dot:nth-child(3) {
+    animation-delay: 0.4s;
+    background: linear-gradient(45deg, #1cc88a, #13855c);
+    box-shadow: 0 0 10px rgba(28, 200, 138, 0.3);
+}
+
+@keyframes pulse {
+    0%, 80%, 100% { transform: scale(0.8); opacity: 0.7; }
+    40% { transform: scale(1.2); opacity: 1; }
+}
+
+.report-section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.report-section:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.report-section .section-header {
+    background: linear-gradient(45deg, #4e73df, #224abe);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.report-section .section-content {
+    padding: 1.5rem;
+}
+
+.report-section .intro {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fc;
+    border-radius: 4px;
+}
+
+.report-section .data-table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.report-section .data-table th,
+.report-section .data-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e3e6f0;
+}
+
+.report-section .data-table th {
+    background: #f8f9fc;
+    font-weight: 600;
+}
+
+.report-section .conclusion {
+    background: #edf2ff;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+}
+
+.report-section .conclusion strong {
+    color: #224abe;
+}
+
+#fullLoadingOverlay {
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(5px);
+}
+
+.loading-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.status-item.active {
+    opacity: 1;
+}
+
+.status-item i {
+    width: 20px;
+}
+</style>
 {% endblock %}
 
 {% block scripts %}
 <script>
 $(document).ready(function() {
-    $('#reportForm').on('submit', function(e) {
-        $('.loading-overlay').css('display', 'flex');
-    });
+    const sections = [
+        { key: 'general_info', label: 'General Information', icon: 'fas fa-info-circle' },
+        { key: 'economic_data', label: 'Economic & Political Outline', icon: 'fas fa-chart-line' },
+        { key: 'international_business', label: 'International Business', icon: 'fas fa-globe' }
+    ];
 
-    $(document).ajaxComplete(function() {
-        setTimeout(() => {
-            $('.loading-overlay').fadeOut();
-        }, 500);
+    function renderSection(section, result) {
+        let html = `
+            <div class='report-section'>
+                <div class='section-header'>
+                    <i class='${section.icon}'></i>
+                    <h5 class='mb-0'>${section.label}</h5>
+                </div>
+                <div class='section-content'>`;
+        
+        if (result.intro) {
+            html += `<div class='intro'>${result.intro}</div>`;
+        }
+
+        if (result.data && Object.keys(result.data).length > 0) {
+            html += '<table class="data-table">';
+            for (const [k, v] of Object.entries(result.data)) {
+                if (Array.isArray(v)) {
+                    // Handle table data
+                    html += `<tr><th colspan="2">${k}</th></tr>`;
+                    v.forEach(item => {
+                        html += `<tr><td colspan="2">${item}</td></tr>`;
+                    });
+                } else {
+                    html += `<tr><th>${k}</th><td>${v}</td></tr>`;
+                }
+            }
+            html += '</table>';
+        }
+
+        if (result.conclusion) {
+            html += `<div class='conclusion'><strong>AI Insights:</strong> ${result.conclusion}</div>`;
+        }
+
+        html += '</div></div>';
+        return html;
+    }
+
+    function updateLoadingStatus(currentSection) {
+        $('.status-item').removeClass('active');
+        $(`.status-item[data-section="${currentSection}"]`).addClass('active');
+    }
+
+    $('#reportForm').on('submit', async function(e) {
+        e.preventDefault();
+        $('#resultsContent').empty();
+        $('#resultsSection').hide();  // Hide results section
+        
+        const loadingOverlay = $('#fullLoadingOverlay');
+        loadingOverlay.css('display', 'flex').hide().fadeIn(200);
+        
+        // Initialize loading status
+        const statusHtml = sections.map(section => 
+            `<div class="status-item" data-section="${section.key}">
+                <i class="fas fa-circle-notch fa-spin"></i>
+                <span>Processing ${section.label}...</span>
+            </div>`
+        ).join('');
+        $('.loading-status').html(statusHtml);
+        
+        try {
+            const originCountry = $('#origin_country').val();
+            const destinationCountry = $('#destination_country').val();
+            
+            // Initialize report generation
+            const initResult = await $.ajax({
+                url: '/api/initialize-report',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ country_code: destinationCountry })
+            });
+            
+            if (initResult.status !== 'success') {
+                throw new Error(initResult.message);
+            }
+            
+            // Process sections sequentially
+            for (const section of sections) {
+                updateLoadingStatus(section.key);
+                const result = await $.ajax({
+                    url: '/api/generate-section',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        section_name: section.key,
+                        country_code: destinationCountry,
+                        origin_country: originCountry
+                    })
+                });
+                
+                if (result.status === 'success') {
+                    // Check if we need to redirect
+                    if (result.redirect) {
+                        window.location.href = result.redirect;
+                        return;
+                    }
+                } else {
+                    throw new Error(`Error in ${section.label}: ${result.message}`);
+                }
+            }
+        } catch (error) {
+            $('#resultsContent').append(
+                `<div class='alert alert-danger'>
+                    <i class='fas fa-exclamation-circle me-2'></i>
+                    ${error.message || 'An unexpected error occurred'}
+                </div>`
+            );
+            $('#resultsSection').show();
+        } finally {
+            loadingOverlay.fadeOut(200);
+        }
     });
 });
 </script>

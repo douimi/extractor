@@ -27,3 +27,1075 @@
 2025-05-19 00:29:20,389 - app.services.report_service - INFO - Fetching data for destination country: KR
 2025-05-19 00:29:20,390 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/kr/general-presentation
 2025-05-19 00:29:33,123 - app.scrapers.santander - WARNING - Element not found for XPath: //h1[@id="pays_v1"]/span[@class="txt-h1_v1"]
+2025-05-19 00:30:09,448 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 00:30:10,971 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 00:30:10,979 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 00:30:11,086 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 00:30:12,534 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 00:30:12] "GET / HTTP/1.1" 200 -
+2025-05-19 00:30:22,316 - app.routes.routes - INFO - Generating new report with ID: 17e36242-b621-494a-a76f-83b91190913c
+2025-05-19 00:30:22,320 - app.routes.routes - INFO - Processing report for Origin: CA, Destination: CN
+2025-05-19 00:30:22,320 - app.routes.routes - INFO - HS6 code: 500100
+2025-05-19 00:30:22,322 - app.routes.routes - INFO - Sector: financial
+2025-05-19 00:30:22,322 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 00:30:24,245 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 00:30:25,196 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 00:30:26,112 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 00:30:28,332 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 00:30:32,872 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 00:30:36,948 - app.services.report_service - INFO - Fetching data for destination country: CN
+2025-05-19 00:30:36,948 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/china/general-presentation
+2025-05-19 00:30:40,811 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/china/economic-political-outline
+2025-05-19 00:30:52,031 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 00:30:52,332 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/china/foreign-trade-in-figures
+2025-05-19 00:30:55,684 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 00:30:55,684 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 00:30:55,716 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:30:55,740 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 00:31:07,457 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 00:31:08,037 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 00:31:08,037 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 00:31:08,037 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 00:31:08,054 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:31:08,095 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 00:31:19,895 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 00:31:20,618 - app.scrapers.santander - INFO - Extracted 5 rows
+2025-05-19 00:31:20,618 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 00:31:20,618 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 00:31:20,639 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:31:20,667 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 00:31:32,313 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 00:31:33,045 - app.scrapers.santander - INFO - Extracted 5 rows
+2025-05-19 00:31:33,045 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 00:31:33,046 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 00:31:33,060 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:31:33,084 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 00:31:44,660 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 00:31:45,730 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:31:45,730 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 00:31:45,730 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 00:31:45,749 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:31:45,773 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 00:31:57,429 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 00:31:58,427 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:31:58,427 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 00:31:58,427 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 00:31:58,427 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:31:58,468 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 00:32:10,068 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 00:32:11,127 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:32:11,127 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 00:32:11,141 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 00:32:11,143 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:32:11,179 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 00:32:22,806 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 00:32:23,889 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:32:23,889 - app.services.report_service - INFO - Generating AI content for the report...
+2025-05-19 00:32:23,889 - app.services.openai_service - ERROR - Error generating report sections with OpenAI: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-19 00:32:23,889 - app.services.openai_service - ERROR - Error generating executive summary with OpenAI: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-19 00:32:23,897 - app.services.report_service - INFO - Successfully generated AI content
+2025-05-19 00:32:23,897 - app.services.report_service - INFO - Generated report data for destination country: CN
+2025-05-19 00:32:26,073 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 00:32:30,118 - app.routes.routes - ERROR - Error in generate_report: 'origin_country'
+2025-05-19 00:32:30,118 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 00:32:30] "[32mPOST /generate-report HTTP/1.1[0m" 302 -
+2025-05-19 00:32:30,150 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 00:32:30] "GET / HTTP/1.1" 200 -
+2025-05-19 00:34:20,115 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\openai_service.py', reloading
+2025-05-19 00:34:20,320 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 00:34:22,152 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 00:34:22,159 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 00:34:22,265 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 00:35:20,321 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 00:35:20,474 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 00:35:22,239 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 00:35:22,255 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 00:35:22,371 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 00:35:33,273 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 00:35:33] "GET / HTTP/1.1" 200 -
+2025-05-19 00:35:43,185 - app.routes.routes - INFO - Generating new report with ID: 3d8bc3e5-cb91-49f2-9417-d068135362df
+2025-05-19 00:35:43,187 - app.routes.routes - INFO - Processing report for Origin: CA, Destination: FR
+2025-05-19 00:35:43,187 - app.routes.routes - INFO - HS6 code: 500400
+2025-05-19 00:35:43,187 - app.routes.routes - INFO - Sector: construction
+2025-05-19 00:35:44,050 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 00:35:46,416 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 00:35:47,398 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 00:35:48,472 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 00:35:50,180 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 00:35:54,471 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 00:35:58,061 - app.services.report_service - INFO - Fetching data for destination country: FR
+2025-05-19 00:35:58,061 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/france/general-presentation
+2025-05-19 00:36:01,315 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/france/economic-political-outline
+2025-05-19 00:36:12,331 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 00:36:12,594 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/france/foreign-trade-in-figures
+2025-05-19 00:36:16,169 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 00:36:16,169 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 00:36:16,196 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:36:16,230 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 00:36:27,912 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 00:36:28,461 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 00:36:28,461 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 00:36:28,461 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 00:36:28,482 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:36:28,511 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 00:36:40,178 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 00:36:41,150 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 00:36:41,150 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 00:36:41,150 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 00:36:41,166 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:36:41,206 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 00:36:52,917 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 00:36:53,957 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 00:36:53,957 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 00:36:53,957 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 00:36:53,977 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:36:54,003 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 00:37:05,621 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 00:37:06,716 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:37:06,716 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 00:37:06,716 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 00:37:06,733 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:37:06,757 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 00:37:18,536 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 00:37:20,453 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:37:20,453 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 00:37:20,453 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 00:37:20,488 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:37:20,532 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 00:37:32,217 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 00:37:34,019 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:37:34,021 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 00:37:34,022 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 00:37:34,044 - app.scrapers.santander - INFO - Table found
+2025-05-19 00:37:34,087 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 00:37:45,759 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 00:37:46,863 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 00:37:46,864 - app.services.report_service - ERROR - Error generating content for general_info: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 00:37:46,865 - app.services.report_service - ERROR - Error generating content for economic_overview: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 00:37:46,866 - app.services.report_service - ERROR - Error generating content for economic_indicators: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 00:37:46,867 - app.services.report_service - ERROR - Error generating content for business_environment: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 00:37:46,868 - app.services.report_service - ERROR - Error generating content for trade_profile: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 00:37:46,869 - app.services.report_service - INFO - Generating AI content for the report...
+2025-05-19 00:37:56,515 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 00:38:05,725 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 00:38:11,521 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 00:38:11,523 - app.services.report_service - INFO - Successfully generated AI content
+2025-05-19 00:38:11,523 - app.services.report_service - INFO - Generated report data for destination country: FR
+2025-05-19 00:38:13,783 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 00:38:17,855 - app.routes.routes - ERROR - Error in generate_report: 'origin_country'
+2025-05-19 00:38:17,875 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 00:38:17] "[32mPOST /generate-report HTTP/1.1[0m" 302 -
+2025-05-19 00:38:17,907 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 00:38:17] "GET / HTTP/1.1" 200 -
+2025-05-19 09:04:07,238 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:04:08,907 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:04:08,912 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:04:09,085 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:04:14,568 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:04:14] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-19 09:04:14,635 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:04:14] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-19 09:04:14,816 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:04:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-19 09:04:24,600 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:04:24] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2025-05-19 09:04:24,635 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:04:24] "GET / HTTP/1.1" 200 -
+2025-05-19 09:04:34,764 - app.routes.routes - INFO - Generating new report with ID: d1301ea4-5ecf-46d0-bb68-317813e1d8d9
+2025-05-19 09:04:34,766 - app.routes.routes - INFO - Processing report for Origin: GB, Destination: FR
+2025-05-19 09:04:34,766 - app.routes.routes - INFO - HS6 code: 160239
+2025-05-19 09:04:34,766 - app.routes.routes - INFO - Sector: transportation
+2025-05-19 09:04:35,797 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:04:42,560 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:04:43,562 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:04:44,446 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:04:47,843 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:04:52,743 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:04:56,759 - app.services.report_service - INFO - Fetching data for destination country: FR
+2025-05-19 09:04:56,764 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/france/general-presentation
+2025-05-19 09:05:00,711 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/france/economic-political-outline
+2025-05-19 09:05:12,120 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 09:05:12,556 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/france/foreign-trade-in-figures
+2025-05-19 09:05:16,112 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 09:05:16,113 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 09:05:16,138 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:05:16,195 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 09:05:27,986 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:05:28,786 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 09:05:28,786 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 09:05:28,786 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:05:28,825 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:05:28,866 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 09:05:40,643 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:05:42,150 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:05:42,150 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 09:05:42,150 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:05:42,180 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:05:42,221 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:05:53,948 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:05:55,547 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:05:55,547 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 09:05:55,547 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:05:55,598 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:05:55,656 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:06:07,312 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:06:09,263 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:06:09,263 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 09:06:09,263 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:06:09,302 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:06:09,345 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:06:21,060 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:06:22,776 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:06:22,776 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 09:06:22,776 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:06:22,810 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:06:22,843 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:06:34,591 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:06:36,324 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:06:36,324 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 09:06:36,324 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:06:36,357 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:06:36,396 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:06:48,104 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:06:49,788 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:06:49,788 - app.services.report_service - ERROR - Error generating content for general_info: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 09:06:49,788 - app.services.report_service - ERROR - Error generating content for economic_overview: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 09:06:49,788 - app.services.report_service - ERROR - Error generating content for economic_indicators: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 09:06:49,804 - app.services.report_service - ERROR - Error generating content for business_environment: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 09:06:49,807 - app.services.report_service - ERROR - Error generating content for trade_profile: 'OpenAIService' object has no attribute 'generate_section_content'
+2025-05-19 09:06:49,809 - app.services.report_service - INFO - Generating AI content for the report...
+2025-05-19 09:07:05,800 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:07:18,531 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:07:27,529 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:07:27,549 - app.services.report_service - INFO - Successfully generated AI content
+2025-05-19 09:07:27,549 - app.services.report_service - INFO - Generated report data for destination country: FR
+2025-05-19 09:07:30,040 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 09:07:34,100 - app.routes.routes - ERROR - Error in generate_report: 'origin_country'
+2025-05-19 09:07:34,100 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:07:34] "[32mPOST /generate-report HTTP/1.1[0m" 302 -
+2025-05-19 09:07:34,164 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:07:34] "GET / HTTP/1.1" 200 -
+2025-05-19 09:22:54,603 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 09:22:54,751 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:22:56,581 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:22:56,581 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:22:56,676 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:24:54,965 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:24:56,526 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:24:56,542 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:24:56,630 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:24:56,792 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:24:56] "GET / HTTP/1.1" 200 -
+2025-05-19 09:25:07,410 - app.routes.routes - INFO - Generating new report with ID: 120d56a5-6184-4da5-a666-dccc239e030c
+2025-05-19 09:25:07,425 - app.routes.routes - INFO - Processing report for Origin: CA, Destination: DE
+2025-05-19 09:25:07,426 - app.routes.routes - INFO - HS6 code: 500200
+2025-05-19 09:25:07,428 - app.routes.routes - INFO - Sector: financial
+2025-05-19 09:25:08,256 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:25:12,471 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:25:13,088 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:25:13,688 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:25:15,237 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:25:19,701 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:25:23,279 - app.services.report_service - INFO - Fetching data for destination country: DE
+2025-05-19 09:25:23,281 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/germany/general-presentation
+2025-05-19 09:25:26,418 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/germany/economic-political-outline
+2025-05-19 09:25:37,400 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 09:25:37,700 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/germany/foreign-trade-in-figures
+2025-05-19 09:25:41,180 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 09:25:41,180 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 09:25:41,210 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:25:41,236 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 09:25:52,947 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:25:53,509 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 09:25:53,510 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 09:25:53,511 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:25:53,528 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:25:53,558 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 09:26:05,261 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:26:06,210 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:26:06,211 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 09:26:06,211 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:26:06,211 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:26:06,247 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:26:17,892 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:26:18,859 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:26:18,859 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 09:26:18,859 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:26:18,879 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:26:18,904 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:26:30,523 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:26:31,539 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:26:31,539 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 09:26:31,539 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:26:31,558 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:26:31,586 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:26:43,254 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:26:44,270 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:26:44,270 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 09:26:44,270 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:26:44,294 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:26:44,319 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:26:55,951 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:26:57,001 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:26:57,001 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 09:26:57,001 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:26:57,001 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:26:57,038 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:27:08,632 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:27:09,682 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:27:18,396 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:27:18,396 - app.services.openai_service - INFO - Generated introduction for general_info section for DE
+2025-05-19 09:27:24,054 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:27:24,054 - app.services.openai_service - INFO - Generated insights for general_info section for DE
+2025-05-19 09:27:32,595 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:27:32,595 - app.services.openai_service - INFO - Generated introduction for economic_overview section for DE
+2025-05-19 09:27:38,011 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:27:38,011 - app.services.openai_service - INFO - Generated insights for economic_overview section for DE
+2025-05-19 09:27:44,809 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:27:44,825 - app.services.openai_service - INFO - Generated introduction for economic_indicators section for DE
+2025-05-19 09:27:48,592 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:27:48,594 - app.services.openai_service - INFO - Generated insights for economic_indicators section for DE
+2025-05-19 09:27:55,739 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:27:55,756 - app.services.openai_service - INFO - Generated introduction for business_environment section for DE
+2025-05-19 09:28:00,757 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:28:00,763 - app.services.openai_service - INFO - Generated insights for business_environment section for DE
+2025-05-19 09:28:10,087 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:28:10,089 - app.services.openai_service - INFO - Generated introduction for trade_profile section for DE
+2025-05-19 09:28:14,944 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:28:14,944 - app.services.openai_service - INFO - Generated insights for trade_profile section for DE
+2025-05-19 09:28:14,944 - app.services.report_service - INFO - Generating AI content for the report...
+2025-05-19 09:28:24,418 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:28:36,765 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:28:43,097 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:28:43,097 - app.services.report_service - INFO - Successfully generated AI content
+2025-05-19 09:28:43,097 - app.services.report_service - INFO - Generated report data for destination country: DE
+2025-05-19 09:28:45,296 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 09:28:49,346 - app.routes.routes - ERROR - Error in generate_report: 'origin_country'
+2025-05-19 09:28:49,346 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:28:49] "[32mPOST /generate-report HTTP/1.1[0m" 302 -
+2025-05-19 09:28:49,399 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:28:49] "GET / HTTP/1.1" 200 -
+2025-05-19 09:29:17,840 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 09:29:17,984 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:29:19,789 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:29:19,789 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:29:19,874 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:29:41,939 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:29:43,368 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:29:43,385 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:29:43,485 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:32:49,165 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 09:32:49,334 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:32:51,169 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:32:51,175 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:32:51,268 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:32:58,931 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\routes\\routes.py', reloading
+2025-05-19 09:32:59,074 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:33:00,746 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:33:00,751 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:33:00,842 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:34:04,273 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:34:05,800 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:34:05,800 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:34:05,896 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:34:07,758 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:34:07] "GET / HTTP/1.1" 200 -
+2025-05-19 09:34:17,340 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:34:20,873 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:34:21,509 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:34:22,200 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:34:23,885 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:34:28,259 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:34:31,828 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/japan/general-presentation
+2025-05-19 09:34:35,030 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/japan/economic-political-outline
+2025-05-19 09:34:45,943 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 09:34:46,243 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/japan/foreign-trade-in-figures
+2025-05-19 09:34:49,567 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 09:34:49,567 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 09:34:49,594 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:34:49,625 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 09:35:01,342 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:35:01,894 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 09:35:01,894 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 09:35:01,894 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:35:01,915 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:35:01,946 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 09:35:13,666 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:35:14,603 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:35:14,604 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 09:35:14,605 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:35:14,615 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:35:14,641 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:35:26,354 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:35:27,320 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:35:27,321 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 09:35:27,322 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:35:27,339 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:35:27,368 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:35:39,023 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:35:40,082 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:35:40,082 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 09:35:40,082 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:35:40,105 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:35:40,131 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:35:51,746 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:35:52,813 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:35:52,813 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 09:35:52,813 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:35:52,830 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:35:52,852 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:36:04,540 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:36:05,644 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:36:05,644 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 09:36:05,644 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:36:05,664 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:36:05,687 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:36:17,308 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:36:18,325 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:36:24,791 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:36:24,791 - app.services.openai_service - INFO - Generated introduction for general_info section for JP
+2025-05-19 09:36:27,195 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:36:27,204 - app.services.openai_service - INFO - Generated insights for general_info section for JP
+2025-05-19 09:36:29,394 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 09:36:33,438 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:36:33] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:36:33,975 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:36:37,287 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:36:37,904 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:36:38,539 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:36:40,120 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:36:44,603 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:36:48,230 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/japan/general-presentation
+2025-05-19 09:36:53,725 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/japan/economic-political-outline
+2025-05-19 09:37:04,672 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 09:37:04,954 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/japan/foreign-trade-in-figures
+2025-05-19 09:37:08,289 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 09:37:08,289 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 09:37:08,306 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:37:08,344 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 09:40:31,578 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:40:33,097 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:40:33,103 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:40:33,193 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:41:28,714 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:41:30,241 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:41:30,248 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:41:30,340 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:41:31,719 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:41:31] "GET / HTTP/1.1" 200 -
+2025-05-19 09:41:40,178 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:41:43,667 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:41:44,362 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:41:45,034 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:41:46,640 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:41:51,202 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:41:54,785 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/france/general-presentation
+2025-05-19 09:42:04,823 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:42:04,823 - app.services.openai_service - INFO - Generated introduction for general_info section for FR
+2025-05-19 09:42:09,041 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:42:09,041 - app.services.openai_service - INFO - Generated insights for general_info section for FR
+2025-05-19 09:42:11,206 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 09:42:15,272 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:42:15] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:42:15,788 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:42:19,104 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:42:19,737 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:42:20,370 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:42:22,004 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:42:26,346 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:42:29,964 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/france/economic-political-outline
+2025-05-19 09:42:41,221 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 09:42:48,433 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:42:48,433 - app.services.openai_service - INFO - Generated introduction for economic_data section for FR
+2025-05-19 09:42:54,164 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:42:54,164 - app.services.openai_service - INFO - Generated insights for economic_data section for FR
+2025-05-19 09:42:56,362 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 09:43:00,446 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:43:00] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:43:00,979 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:43:04,518 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:43:05,230 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:43:05,879 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:43:07,495 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:43:11,861 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:43:15,437 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/france/foreign-trade-in-figures
+2025-05-19 09:43:19,268 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 09:43:19,268 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 09:43:19,328 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:43:19,360 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 09:43:31,057 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:43:31,607 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 09:43:31,607 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 09:43:31,607 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:43:31,624 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:43:31,658 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 09:43:43,304 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:43:44,337 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:43:44,353 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 09:43:44,354 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:43:44,354 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:43:44,389 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:43:56,086 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:43:57,069 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:43:57,069 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 09:43:57,069 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:43:57,086 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:43:57,119 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:44:08,799 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:44:09,799 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:44:09,799 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 09:44:09,799 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:44:09,816 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:44:09,832 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:44:21,497 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:44:22,454 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:44:22,455 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 09:44:22,455 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:44:22,463 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:44:22,480 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:44:34,133 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:44:35,234 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:44:35,235 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 09:44:35,235 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:44:35,245 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:44:35,261 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:44:46,959 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:44:47,975 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:44:57,690 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:44:57,706 - app.services.openai_service - INFO - Generated introduction for international_business section for FR
+2025-05-19 09:45:03,056 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:45:03,056 - app.services.openai_service - INFO - Generated insights for international_business section for FR
+2025-05-19 09:45:05,238 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 09:45:09,288 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:45:09] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:47:04,032 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 09:47:04,232 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:47:06,069 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:47:06,074 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:47:06,166 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:47:17,056 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\routes\\routes.py', reloading
+2025-05-19 09:47:17,196 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:47:18,905 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:47:18,912 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:47:19,013 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:48:04,070 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:48:05,703 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:48:05,719 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:48:05,803 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:48:07,773 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:48:07] "GET / HTTP/1.1" 200 -
+2025-05-19 09:48:15,718 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:48:20,984 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:48:21,834 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:48:22,601 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:48:24,166 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:48:28,979 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:48:34,682 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:48:34] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-19 09:48:35,180 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:48:35] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:48:35,697 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:48:35] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:48:36,214 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:48:36] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:49:59,584 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 09:49:59,748 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:50:01,420 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:50:01,437 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:50:01,564 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:50:22,346 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\routes\\routes.py', reloading
+2025-05-19 09:50:22,480 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:50:24,011 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:50:24,011 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:50:24,109 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:50:35,010 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\routes\\routes.py', reloading
+2025-05-19 09:50:35,157 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:50:36,819 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:50:36,823 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:50:36,942 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:51:02,181 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:51:03,751 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:51:03,751 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:51:03,848 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:51:05,318 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:51:05] "GET / HTTP/1.1" 200 -
+2025-05-19 09:51:15,718 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:51:19,532 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:51:20,132 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:51:20,732 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:51:22,298 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:51:27,648 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:51:31,330 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:51:31] "[35m[1mPOST /api/initialize-report HTTP/1.1[0m" 500 -
+2025-05-19 09:52:31,652 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 09:52:31,801 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:52:33,595 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:52:33,601 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:52:33,685 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:52:43,138 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:52:43] "GET / HTTP/1.1" 200 -
+2025-05-19 09:52:51,530 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:52:55,263 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:52:56,164 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:52:56,780 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:52:58,296 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:53:02,884 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:53:06,479 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:53:06] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-19 09:53:07,144 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/canada/general-presentation
+2025-05-19 09:53:18,810 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:53:18,826 - app.services.openai_service - INFO - Generated introduction for general_info section for CA
+2025-05-19 09:53:24,625 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:53:24,642 - app.services.openai_service - INFO - Generated insights for general_info section for CA
+2025-05-19 09:53:24,657 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:53:24] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:53:25,291 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/canada/economic-political-outline
+2025-05-19 09:53:36,372 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 09:53:45,237 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:53:45,256 - app.services.openai_service - INFO - Generated introduction for economic_data section for CA
+2025-05-19 09:53:51,286 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:53:51,286 - app.services.openai_service - INFO - Generated insights for economic_data section for CA
+2025-05-19 09:53:51,310 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:53:51] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:53:52,052 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/canada/foreign-trade-in-figures
+2025-05-19 09:53:55,309 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 09:53:55,309 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 09:53:55,338 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:53:55,368 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 09:54:07,067 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:54:07,582 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 09:54:07,582 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 09:54:07,582 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:54:07,606 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:54:07,637 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 09:54:19,329 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:54:20,330 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:54:20,346 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 09:54:20,347 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:54:20,367 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:54:20,400 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:54:32,094 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:54:33,111 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:54:33,111 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 09:54:33,111 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:54:33,133 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:54:33,162 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:54:44,808 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:54:45,858 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:54:45,858 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 09:54:45,858 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:54:45,875 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:54:45,912 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:54:57,605 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:54:59,190 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:54:59,190 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 09:54:59,190 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:54:59,212 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:54:59,257 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:55:10,871 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:55:11,903 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:55:11,903 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 09:55:11,919 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:55:11,920 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:55:11,956 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:55:23,567 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:55:24,617 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:55:29,934 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:55:29,934 - app.services.openai_service - INFO - Generated introduction for international_business section for CA
+2025-05-19 09:55:35,283 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:55:35,283 - app.services.openai_service - INFO - Generated insights for international_business section for CA
+2025-05-19 09:55:37,514 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 09:55:41,581 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:55:41] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:55:41,616 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-19 09:55:41,647 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:55:41] "[35m[1mGET /report HTTP/1.1[0m" 500 -
+2025-05-19 09:55:41,817 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:55:41] "GET /report?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-05-19 09:55:41,818 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:55:41] "GET /report?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-05-19 09:55:41,882 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:55:41] "GET /report?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-19 09:55:41,886 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:55:41] "GET /report?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2025-05-19 09:55:41,910 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:55:41] "GET /report?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-19 09:56:31,672 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\routes\\routes.py', reloading
+2025-05-19 09:56:31,822 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 09:56:33,637 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 09:56:33,637 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 09:56:33,738 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 09:57:01,871 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:57:01] "GET / HTTP/1.1" 200 -
+2025-05-19 09:57:11,580 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 09:57:15,246 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:57:15,896 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 09:57:16,546 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 09:57:18,462 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 09:57:23,116 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 09:57:26,867 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:57:26] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-19 09:57:27,644 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/france/general-presentation
+2025-05-19 09:57:39,808 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:57:39,808 - app.services.openai_service - INFO - Generated introduction for general_info section for FR
+2025-05-19 09:57:44,758 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:57:44,774 - app.services.openai_service - INFO - Generated insights for general_info section for FR
+2025-05-19 09:57:44,790 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:57:44] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:57:45,440 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/france/economic-political-outline
+2025-05-19 09:57:56,505 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 09:58:06,803 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:58:06,803 - app.services.openai_service - INFO - Generated introduction for economic_data section for FR
+2025-05-19 09:58:12,535 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:58:12,535 - app.services.openai_service - INFO - Generated insights for economic_data section for FR
+2025-05-19 09:58:12,557 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 09:58:12] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 09:58:13,168 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/france/foreign-trade-in-figures
+2025-05-19 09:58:16,966 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 09:58:16,968 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 09:58:17,017 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:58:17,051 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 09:58:28,815 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:58:29,581 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 09:58:29,581 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 09:58:29,581 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:58:29,598 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:58:29,631 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 09:58:41,412 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:58:42,745 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:58:42,745 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 09:58:42,745 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 09:58:42,779 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:58:42,812 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:58:54,576 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 09:58:55,708 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 09:58:55,710 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 09:58:55,710 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:58:55,726 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:58:55,760 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:59:07,440 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:59:08,907 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:59:08,907 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 09:59:08,907 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:59:08,923 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:59:08,957 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:59:20,671 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:59:22,154 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:59:22,154 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 09:59:22,154 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 09:59:22,171 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:59:22,204 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 09:59:33,868 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 09:59:35,302 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:59:35,302 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 09:59:35,302 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 09:59:35,318 - app.scrapers.santander - INFO - Table found
+2025-05-19 09:59:35,352 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 09:59:46,983 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 09:59:48,432 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 09:59:59,404 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 09:59:59,409 - app.services.openai_service - INFO - Generated introduction for international_business section for FR
+2025-05-19 10:00:04,864 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:00:04,880 - app.services.openai_service - INFO - Generated insights for international_business section for FR
+2025-05-19 10:00:07,080 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 10:00:11,162 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:00:11] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 10:00:11,215 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-19 10:00:11,215 - app.routes.routes - INFO - Report data copied. Origin: CA, Destination: FR
+2025-05-19 10:00:11,250 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:00:11] "GET /report HTTP/1.1" 200 -
+2025-05-19 10:04:05,199 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 10:04:06,736 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 10:04:06,741 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 10:04:06,832 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 10:04:08,188 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:04:08] "GET / HTTP/1.1" 200 -
+2025-05-19 10:04:16,897 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 10:04:21,329 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 10:04:22,063 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 10:04:22,796 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 10:04:24,646 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 10:04:29,315 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 10:04:33,094 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:04:33] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-19 10:04:33,877 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/france/general-presentation
+2025-05-19 10:04:43,026 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:04:43,026 - app.services.openai_service - INFO - Generated introduction for general_info section for FR
+2025-05-19 10:04:49,124 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:04:49,124 - app.services.openai_service - INFO - Generated insights for general_info section for FR
+2025-05-19 10:04:49,124 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:04:49] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 10:04:49,757 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/france/economic-political-outline
+2025-05-19 10:05:00,788 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 10:05:06,727 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:05:06,727 - app.services.openai_service - INFO - Generated introduction for economic_data section for FR
+2025-05-19 10:05:12,453 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:05:12,469 - app.services.openai_service - INFO - Generated insights for economic_data section for FR
+2025-05-19 10:05:12,475 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:05:12] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 10:05:13,103 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/france/foreign-trade-in-figures
+2025-05-19 10:05:16,663 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 10:05:16,663 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 10:05:16,708 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:05:16,744 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 10:05:28,550 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 10:05:29,316 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 10:05:29,316 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 10:05:29,316 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 10:05:29,339 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:05:29,374 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 10:05:41,131 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 10:05:42,563 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 10:05:42,563 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 10:05:42,563 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 10:05:42,592 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:05:42,630 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 10:05:54,378 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 10:05:55,694 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 10:05:55,710 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 10:05:55,711 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 10:05:55,731 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:05:55,770 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 10:06:07,475 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 10:06:08,958 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:06:08,958 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 10:06:08,958 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 10:06:08,993 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:06:09,025 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 10:06:20,689 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 10:06:22,190 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:06:22,190 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 10:06:22,190 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 10:06:22,208 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:06:22,249 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 10:06:33,920 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 10:06:35,403 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:06:35,403 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 10:06:35,403 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 10:06:35,422 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:06:35,455 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 10:06:47,151 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 10:06:48,651 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:06:56,766 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:06:56,783 - app.services.openai_service - INFO - Generated introduction for international_business section for FR
+2025-05-19 10:07:02,232 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:07:02,232 - app.services.openai_service - INFO - Generated insights for international_business section for FR
+2025-05-19 10:07:04,532 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 10:07:08,597 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:07:08] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 10:07:08,666 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-19 10:07:08,666 - app.routes.routes - INFO - Report data copied. Origin: CA, Destination: FR
+2025-05-19 10:07:08,705 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:07:08] "GET /report HTTP/1.1" 200 -
+2025-05-19 10:20:59,006 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\services\\report_service.py', reloading
+2025-05-19 10:20:59,171 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 10:21:01,056 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 10:21:01,061 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 10:21:01,164 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 10:21:05,003 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:21:05] "GET / HTTP/1.1" 200 -
+2025-05-19 10:21:15,804 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 10:21:19,605 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 10:21:20,268 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 10:21:20,911 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 10:21:22,870 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 10:21:27,359 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 10:21:31,044 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:21:31] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-19 10:21:31,713 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/france/general-presentation
+2025-05-19 10:21:41,854 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:21:41,856 - app.services.openai_service - INFO - Generated introduction for general_info section for FR
+2025-05-19 10:21:46,757 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:21:46,763 - app.services.openai_service - INFO - Generated insights for general_info section for FR
+2025-05-19 10:21:46,769 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:21:46] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 10:21:47,335 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/france/economic-political-outline
+2025-05-19 10:21:58,233 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 10:22:06,984 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:22:06,993 - app.services.openai_service - INFO - Generated introduction for economic_data section for FR
+2025-05-19 10:22:12,463 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:22:12,472 - app.services.openai_service - INFO - Generated insights for economic_data section for FR
+2025-05-19 10:22:12,485 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:22:12] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 10:22:13,153 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/france/foreign-trade-in-figures
+2025-05-19 10:22:16,635 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 10:22:16,638 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 10:22:16,665 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:22:16,699 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 10:22:28,489 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 10:22:29,213 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 10:22:29,214 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 10:22:29,215 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 10:22:29,234 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:22:29,272 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 10:22:40,973 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 10:22:42,297 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 10:22:42,298 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 10:22:42,300 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 10:22:42,316 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:22:42,352 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 10:22:54,052 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 10:22:55,368 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 10:22:55,369 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 10:22:55,370 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 10:22:55,393 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:22:55,433 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 10:23:07,086 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 10:23:08,591 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:23:08,592 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 10:23:08,594 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 10:23:08,615 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:23:08,642 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 10:23:20,269 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 10:23:21,739 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:23:21,741 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 10:23:21,743 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 10:23:21,758 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:23:21,795 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 10:23:33,494 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 10:23:34,931 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:23:34,932 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 10:23:34,934 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 10:23:34,948 - app.scrapers.santander - INFO - Table found
+2025-05-19 10:23:34,978 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 10:23:46,601 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 10:23:47,968 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 10:23:57,068 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:23:57,076 - app.services.openai_service - INFO - Generated introduction for international_business section for FR
+2025-05-19 10:24:03,087 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 10:24:03,093 - app.services.openai_service - INFO - Generated insights for international_business section for FR
+2025-05-19 10:24:05,371 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 10:24:09,479 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:24:09] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 10:24:09,522 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-19 10:24:09,523 - app.routes.routes - INFO - Report data copied. Origin: CA, Destination: FR
+2025-05-19 10:24:09,635 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:24:09] "[35m[1mGET /report HTTP/1.1[0m" 500 -
+2025-05-19 10:24:09,806 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:24:09] "GET /report?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-05-19 10:24:09,809 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:24:09] "GET /report?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-05-19 10:24:09,869 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:24:09] "GET /report?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2025-05-19 10:24:09,875 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:24:09] "GET /report?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-19 10:24:09,904 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:24:09] "GET /report?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-19 10:24:44,108 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\__init__.py', reloading
+2025-05-19 10:24:44,262 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 10:24:44,752 - app - INFO - Extractor startup
+2025-05-19 10:24:46,000 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 10:24:46,007 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 10:24:46,107 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-05-19 10:29:01,020 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-19 10:29:01,021 - app.routes.routes - INFO - Report data copied. Origin: CA, Destination: FR
+2025-05-19 10:29:01,071 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 10:29:01] "GET /report HTTP/1.1" 200 -
+2025-05-19 17:45:04,476 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:45:04] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-19 17:45:04,517 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:45:04] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-19 17:45:09,955 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:45:09] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2025-05-19 17:45:10,022 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:45:10] "GET / HTTP/1.1" 200 -
+2025-05-19 17:45:19,797 - WDM - INFO - ====== WebDriver manager ======
+2025-05-19 17:45:24,373 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 17:45:25,259 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-19 17:45:26,082 - WDM - INFO - Driver [C:\Users\Otmane\.wdm\drivers\chromedriver\win64\136.0.7103.94\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-05-19 17:45:28,392 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-19 17:45:32,865 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 17:45:36,446 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:45:36] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-19 17:45:37,350 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/canada/general-presentation
+2025-05-19 17:46:17,937 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 17:46:17,943 - app.services.openai_service - INFO - Generated introduction for general_info section for CA
+2025-05-19 17:46:23,083 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 17:46:23,090 - app.services.openai_service - INFO - Generated insights for general_info section for CA
+2025-05-19 17:46:23,104 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:46:23] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 17:46:23,786 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/canada/economic-political-outline
+2025-05-19 17:46:34,769 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 17:46:44,609 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 17:46:44,612 - app.services.openai_service - INFO - Generated introduction for economic_data section for CA
+2025-05-19 17:46:59,424 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 17:46:59,430 - app.services.openai_service - INFO - Generated insights for economic_data section for CA
+2025-05-19 17:46:59,443 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:46:59] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 17:47:00,162 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/canada/foreign-trade-in-figures
+2025-05-19 17:47:03,634 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 17:47:03,635 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 17:47:03,656 - app.scrapers.santander - INFO - Table found
+2025-05-19 17:47:03,697 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 17:47:15,425 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 17:47:16,173 - app.scrapers.santander - INFO - Extracted 4 rows
+2025-05-19 17:47:16,174 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 17:47:16,175 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 17:47:16,194 - app.scrapers.santander - INFO - Table found
+2025-05-19 17:47:16,228 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 17:47:27,995 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 17:47:29,141 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 17:47:29,143 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 17:47:29,144 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 17:47:29,160 - app.scrapers.santander - INFO - Table found
+2025-05-19 17:47:29,192 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 17:47:40,925 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 17:47:42,139 - app.scrapers.santander - INFO - Extracted 7 rows
+2025-05-19 17:47:42,140 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 17:47:42,141 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 17:47:42,167 - app.scrapers.santander - INFO - Table found
+2025-05-19 17:47:42,201 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 17:47:53,824 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 17:47:55,155 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 17:47:55,156 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 17:47:55,157 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 17:47:55,174 - app.scrapers.santander - INFO - Table found
+2025-05-19 17:47:55,201 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 17:48:06,834 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 17:48:08,270 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 17:48:08,271 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 17:48:08,273 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 17:48:08,292 - app.scrapers.santander - INFO - Table found
+2025-05-19 17:48:08,331 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 17:48:19,949 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 17:48:20,969 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 17:48:20,970 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 17:48:20,971 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 17:48:20,982 - app.scrapers.santander - INFO - Table found
+2025-05-19 17:48:21,004 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 17:48:32,637 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 17:48:33,609 - app.scrapers.santander - INFO - Extracted 10 rows
+2025-05-19 17:48:41,195 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 17:48:41,203 - app.services.openai_service - INFO - Generated introduction for international_business section for CA
+2025-05-19 17:48:49,283 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 17:48:49,289 - app.services.openai_service - INFO - Generated insights for international_business section for CA
+2025-05-19 17:48:51,486 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 17:48:55,567 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:48:55] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 17:48:55,607 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-19 17:48:55,608 - app.routes.routes - INFO - Report data copied. Origin: GB, Destination: CA
+2025-05-19 17:48:55,618 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:48:55] "GET /report HTTP/1.1" 200 -

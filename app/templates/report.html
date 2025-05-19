@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Report Results{% endblock %}
+{% block title %}Report - {{ report_data.report_type }}{% endblock %}
 
 {% block head %}
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -9,203 +9,417 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid py-4">
-    <div class="row justify-content-center">
-        <div class="col-12 col-xl-10">
-            <!-- Report Header -->
-            <div class="card mb-4">
-                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">
-                        <i class="fas fa-file-alt me-2"></i>Market Analysis Report
-                    </h4>
-                    <div>
-                        <button class="btn btn-light btn-sm me-2" onclick="window.print()">
-                            <i class="fas fa-print me-1"></i>Print Report
-                        </button>
-                        <a href="{{ url_for('main.index') }}" class="btn btn-light btn-sm">
-                            <i class="fas fa-arrow-left me-1"></i>Back to Generator
-                        </a>
+<div class="container-fluid">
+    <!-- Report Header -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-file-alt"></i>
+            {{ report_data.report_type }}
+        </h1>
+        <div class="text-muted">
+            Generated on {{ report_data.generated_at }}
+        </div>
+    </div>
+
+    <!-- Report Summary -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex align-items-center">
+            <i class="fas fa-info-circle me-2"></i>
+            <h6 class="m-0 font-weight-bold text-primary">Report Overview</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="country-info">
+                        <h6 class="font-weight-bold">Origin Country</h6>
+                        <p class="country-name">{{ report_data.origin_country }}</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <h5 class="text-muted mb-3">Report Summary</h5>
-                            <ul class="list-unstyled">
-                                <li class="mb-2">
-                                    <i class="fas fa-globe-americas me-2 text-primary"></i>
-                                    <strong>Origin Country:</strong> {{ report_data.origin_country.code }}
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fas fa-globe me-2 text-primary"></i>
-                                    <strong>Destination Country:</strong> {{ report_data.destination_country.code }}
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fas fa-barcode me-2 text-primary"></i>
-                                    <strong>HS6 Codes:</strong> {{ report_data.hs6_codes|join(', ') }}
-                                </li>
-                                <li>
-                                    <i class="fas fa-industry me-2 text-primary"></i>
-                                    <strong>Sectors:</strong> {{ report_data.sectors|join(', ') }}
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="text-muted mb-3">Report Details</h5>
-                            <ul class="list-unstyled">
-                                <li class="mb-2">
-                                    <i class="fas fa-calendar me-2 text-primary"></i>
-                                    <strong>Generated:</strong> {{ report_data.generated_at }}
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fas fa-database me-2 text-primary"></i>
-                                    <strong>Data Source:</strong> Santander Trade Portal
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Origin Country Report -->
-            <div class="card mb-4">
-                <div class="card-header bg-light">
-                    <h5 class="mb-0">
-                        <i class="fas fa-globe-americas me-2"></i>Origin Country: {{ report_data.origin_country.code }}
-                    </h5>
-                </div>
-                <div class="card-body">
-                    {% set data = report_data.origin_country.data %}
-                    {% include 'report_country_section.html' %}
-                </div>
-            </div>
-
-            <!-- Destination Country Report -->
-            <div class="card mb-4">
-                <div class="card-header bg-light">
-                    <h5 class="mb-0">
-                        <i class="fas fa-globe me-2"></i>Destination Country: {{ report_data.destination_country.code }}
-                    </h5>
-                </div>
-                <div class="card-body">
-                    {% set data = report_data.destination_country.data %}
-                    {% include 'report_country_section.html' %}
-                </div>
-            </div>
-
-            <!-- Overall Report Conclusion -->
-            <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-chart-pie me-2"></i>Overall Market Analysis
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-info mb-3">
-                        <i class="fas fa-info-circle me-2"></i>
-                        This comprehensive market analysis provides valuable insights for businesses considering expansion between {{ report_data.origin_country.code }} and {{ report_data.destination_country.code }}. The following recommendations are based on the collected data and market indicators.
-                    </div>
-                    
-                    <h6 class="text-primary mb-3">Key Findings</h6>
-                    <ul>
-                        <li>Origin Country: {{ report_data.origin_country.code }}</li>
-                        <li>Destination Country: {{ report_data.destination_country.code }}</li>
-                        <li>Target Sectors: {{ report_data.sectors|join(', ') }}</li>
-                        <li>HS6 Codes Analyzed: {{ report_data.hs6_codes|join(', ') }}</li>
-                    </ul>
-
-                    <h6 class="text-primary mb-3">Strategic Recommendations</h6>
-                    <ol>
-                        <li>Market Entry Strategy
-                            <ul>
-                                <li>Evaluate economic freedom scores of both countries</li>
-                                <li>Consider joint ventures if needed based on regulatory environments</li>
-                                <li>Focus on sectors with highest value-added contribution</li>
-                            </ul>
-                        </li>
-                        <li>Risk Management
-                            <ul>
-                                <li>Monitor political developments in both countries</li>
-                                <li>Account for currency exchange rates in financial planning</li>
-                                <li>Develop contingency plans for economic volatility</li>
-                            </ul>
-                        </li>
-                        <li>Operational Considerations
-                            <ul>
-                                <li>Adapt business models to both markets</li>
-                                <li>Consider employment regulations in both countries</li>
-                                <li>Develop strong local partnerships</li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <div class="alert alert-success mt-3">
-                        <i class="fas fa-lightbulb me-2"></i>
-                        <strong>Next Steps:</strong>
-                        <ul class="mb-0">
-                            <li>Conduct detailed market research for specific products/services</li>
-                            <li>Develop country-specific marketing strategies</li>
-                            <li>Establish local partnerships and networks</li>
-                            <li>Create detailed implementation timelines</li>
-                            <li>Set up monitoring systems for market changes</li>
-                        </ul>
+                <div class="col-md-6">
+                    <div class="country-info">
+                        <h6 class="font-weight-bold">Destination Country</h6>
+                        <p class="country-name">{{ report_data.destination_country }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Report Sections -->
+    {% for section_name, section in report_data.sections.items() %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex align-items-center">
+            {% if section_name == 'general_info' %}
+                <i class="fas fa-info-circle me-2"></i>
+                <h6 class="m-0 font-weight-bold text-primary">General Information</h6>
+            {% elif section_name == 'economic_data' %}
+                <i class="fas fa-chart-line me-2"></i>
+                <h6 class="m-0 font-weight-bold text-primary">Economic & Political Outline</h6>
+            {% elif section_name == 'international_business' %}
+                <i class="fas fa-globe me-2"></i>
+                <h6 class="m-0 font-weight-bold text-primary">International Business</h6>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            {% if section.intro %}
+            <div class="section-intro mb-4">
+                <p class="font-italic">{{ section.intro }}</p>
+            </div>
+            {% endif %}
+
+            {% if section.data %}
+                {% if section_name == 'international_business' %}
+                    <!-- Foreign Trade Values -->
+                    {% if section.data.foreign_trade_values %}
+                    <div class="subsection mb-5">
+                        <h6 class="subsection-title">
+                            <i class="fas fa-chart-line me-2"></i>Foreign Trade Values
+                        </h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Indicator</th>
+                                        <th class="text-end">2019</th>
+                                        <th class="text-end">2020</th>
+                                        <th class="text-end">2021</th>
+                                        <th class="text-end">2022</th>
+                                        <th class="text-end">2023</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in section.data.foreign_trade_values %}
+                                    <tr>
+                                        <td>{{ row['Foreign Trade Values'] }}</td>
+                                        <td class="text-end">{{ row['2019']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2020']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2021']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2022']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2023']|default('')|format_number }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Trade Partners -->
+                    <div class="row mb-5">
+                        <!-- Main Customers -->
+                        <div class="col-md-6">
+                            <div class="partner-section">
+                                <h6 class="subsection-title">
+                                    <i class="fas fa-users me-2"></i>Main Customers
+                                </h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Country</th>
+                                                <th class="text-end">Share of Exports (2023)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for customer in section.data.main_customers %}
+                                            <tr>
+                                                <td>{{ customer['Main Customers\n(% of Exports)'] }}</td>
+                                                <td class="text-end">{{ customer['2023']|default('') }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Main Suppliers -->
+                        <div class="col-md-6">
+                            <div class="partner-section">
+                                <h6 class="subsection-title">
+                                    <i class="fas fa-industry me-2"></i>Main Suppliers
+                                </h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Country</th>
+                                                <th class="text-end">Share of Imports (2023)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for supplier in section.data.main_suppliers %}
+                                            <tr>
+                                                <td>{{ supplier['Main Suppliers\n(% of Imports)'] }}</td>
+                                                <td class="text-end">{{ supplier['2023']|default('') }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trade Indicators -->
+                    {% if section.data.foreign_trade_indicators %}
+                    <div class="subsection mb-5">
+                        <h6 class="subsection-title">
+                            <i class="fas fa-chart-bar me-2"></i>Foreign Trade Indicators
+                        </h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Indicator</th>
+                                        <th class="text-end">2019</th>
+                                        <th class="text-end">2020</th>
+                                        <th class="text-end">2021</th>
+                                        <th class="text-end">2022</th>
+                                        <th class="text-end">2023</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in section.data.foreign_trade_indicators %}
+                                    <tr>
+                                        <td>{{ row['Foreign Trade Indicators'] }}</td>
+                                        <td class="text-end">{{ row['2019']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2020']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2021']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2022']|default('')|format_number }}</td>
+                                        <td class="text-end">{{ row['2023']|default('')|format_number }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <div class="section-data mb-4">
+                        {% if section_name == 'general_info' %}
+                            <div class="info-grid">
+                                {% for key, value in section.data.items() %}
+                                <div class="info-item">
+                                    <div class="info-label">{{ key }}</div>
+                                    <div class="info-value">{{ value }}</div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% elif section_name == 'economic_data' %}
+                            <div class="economic-data">
+                                {% for key, value in section.data.items() %}
+                                <div class="data-item">
+                                    <h6 class="data-title">{{ key }}</h6>
+                                    <p class="data-content">{{ value }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            {% if section.conclusion %}
+            <div class="section-conclusion mt-4">
+                <h6 class="font-weight-bold text-primary mb-3">AI Insights & Recommendations</h6>
+                <div class="conclusion-content">
+                    {{ section.conclusion }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
 
 {% block styles %}
 <style>
-    @media print {
-        .btn {
-            display: none !important;
-        }
-        .card {
-            border: none !important;
-        }
-        .card-header {
-            background-color: #fff !important;
-            color: #000 !important;
-        }
+    .country-info {
+        padding: 1rem;
+        background: #f8f9fc;
+        border-radius: 8px;
+        text-align: center;
     }
-    
-    .text-muted {
-        color: #6c757d !important;
-    }
-    
-    .text-primary {
-        color: #0d6efd !important;
-    }
-    
-    .card {
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    }
-    
-    .card-header {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    }
-    
-    .list-unstyled li {
+
+    .country-info h6 {
+        color: #4e73df;
         margin-bottom: 0.5rem;
     }
-    
-    .bg-primary {
-        background-color: #0d6efd !important;
-    }
-    
-    .bg-light {
-        background-color: #f8f9fa !important;
+
+    .country-name {
+        font-size: 1.25rem;
+        margin-bottom: 0;
     }
 
-    .alert {
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .info-item {
+        padding: 1rem;
+        background: #fff;
+        border: 1px solid #e3e6f0;
+        border-radius: 6px;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #4e73df;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-value {
+        color: #5a5c69;
+    }
+
+    .economic-data .data-item {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #fff;
+        border: 1px solid #e3e6f0;
+        border-radius: 6px;
+    }
+
+    .data-title {
+        color: #4e73df;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+    }
+
+    .data-content {
+        color: #5a5c69;
+        margin-bottom: 0;
+    }
+
+    .data-list {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    .data-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e3e6f0;
+    }
+
+    .data-list li:last-child {
+        border-bottom: none;
+    }
+
+    .trade-table-wrapper {
+        background: #fff;
+        border: 1px solid #e3e6f0;
+        border-radius: 6px;
+        padding: 1rem;
+    }
+
+    .trade-table-title {
+        color: #4e73df;
         margin-bottom: 1rem;
+        font-weight: 600;
     }
 
-    .alert i {
-        margin-right: 0.5rem;
+    .trade-table th {
+        background: #f8f9fc;
+        color: #4e73df;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .trade-table td {
+        vertical-align: middle;
+    }
+
+    .section-intro {
+        padding: 1.5rem;
+        background: #f8f9fc;
+        border-left: 4px solid #4e73df;
+        border-radius: 6px;
+        margin-bottom: 2rem;
+    }
+
+    .section-intro p {
+        color: #5a5c69;
+        margin-bottom: 0;
+    }
+
+    .section-conclusion {
+        background: #edf2ff;
+        padding: 1.5rem;
+        border-radius: 6px;
+    }
+
+    .conclusion-content {
+        color: #2e3649;
+        line-height: 1.6;
+    }
+
+    .card-header i {
+        color: #4e73df;
+        margin-right: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .subsection {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .subsection-title {
+        color: #4e73df;
+        font-weight: 600;
+        padding: 1rem;
+        margin: 0;
+        border-bottom: 1px solid #e3e6f0;
+    }
+
+    .partner-section {
+        height: 100%;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fc;
+    }
+
+    .table th {
+        font-weight: 600;
+        color: #4e73df;
+        background-color: #f8f9fc;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .text-end {
+        text-align: right;
+    }
+
+    .table-light {
+        background-color: #f8f9fc;
+    }
+
+    @media (max-width: 768px) {
+        .partner-section {
+            margin-bottom: 2rem;
+        }
     }
 </style>
 {% endblock %} 
