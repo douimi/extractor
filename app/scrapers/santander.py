@@ -271,7 +271,7 @@ class SantanderScraper:
             logger.info(f"Accessing economic data URL: {url}")
             self.driver.get(url)
 
-            self.driver.take_screenshot(f"draft.png")
+            self.driver.save_screenshot('screenshot.png')  
             
             # Wait for the content to load
             WebDriverWait(self.driver, 10).until(
