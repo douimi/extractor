@@ -11,6 +11,7 @@ import time
 import logging
 from typing import Dict, List
 from functools import lru_cache
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -48,15 +49,53 @@ class SantanderScraper:
         try:
             chrome_options = Options()
             if self.headless:
-                chrome_options.add_argument("--headless=new")
-                print("Headless mode is enabled")
+                #chrome_options.add_argument("--headless=new")
+                logger.info("Headless mode is enabled")
+            
+            # Add robust cross-platform options
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
+            chrome_options.add_argument("--disable-gpu")
             chrome_options.add_argument("--window-size=1920,1080")
+            chrome_options.add_argument("--disable-extensions")
+            chrome_options.add_argument("--disable-setuid-sandbox")
+            chrome_options.add_argument("--disable-web-security")
             
-            service = ChromeService(ChromeDriverManager().install())
-            self.driver = webdriver.Chrome(options=chrome_options)
-            logger.info("Chrome WebDriver initialized successfully")
+            # Add logging preferences
+            chrome_options.add_argument("--enable-logging")
+            chrome_options.add_argument("--v=1")
+            
+            # Increase timeouts and stability
+            chrome_options.add_argument("--dns-prefetch-disable")
+            chrome_options.add_argument("--disable-features=VizDisplayCompositor")
+            
+            try:
+                self.driver = webdriver.Chrome(options=chrome_options)
+                logger.info("Chrome WebDriver initialized successfully with ChromeDriverManager")
+            except Exception as chrome_error:
+                logger.warning(f"Failed to initialize with ChromeDriverManager: {str(chrome_error)}")
+                logger.info("Attempting fallback to system ChromeDriver")
+                
+                # Fallback to system ChromeDriver
+                try:
+                    if os.name == 'posix':  # Linux/Unix
+                        chromedriver_path = "/usr/bin/chromedriver"
+                    else:  # Windows
+                        chromedriver_path = "chromedriver.exe"
+                    
+                    self.driver = webdriver.Chrome(options=chrome_options)
+                    logger.info("Chrome WebDriver initialized successfully with system ChromeDriver")
+                except Exception as fallback_error:
+                    logger.error(f"Fallback to system ChromeDriver failed: {str(fallback_error)}")
+                    raise
+            
+            # Set page load timeout
+            self.driver.set_page_load_timeout(30)
+            
+            # Add window size logging
+            window_size = self.driver.get_window_size()
+            logger.info(f"Browser window size: {window_size}")
+            
         except Exception as e:
             logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
             raise
@@ -428,9 +467,9 @@ class SantanderScraper:
         try:
             logger.info(f"Looking for table with XPath: {table_xpath}")
             
-            # Find the table
+            # Wait longer for table to be present
             try:
-                table = WebDriverWait(self.driver, 5).until(
+                table = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, table_xpath))
                 )
                 logger.info("Table found")
@@ -438,58 +477,107 @@ class SantanderScraper:
                 logger.warning(f"Table not found with XPath: {table_xpath}")
                 return []
 
+            # Ensure table is visible
+            try:
+                self.driver.execute_script("arguments[0].scrollIntoView(true);", table)
+                time.sleep(1)  # Wait for any animations
+                
+                # Check if table is actually visible
+                if not table.is_displayed():
+                    logger.warning("Table found but not visible")
+                    return []
+            except Exception as e:
+                logger.warning(f"Error checking table visibility: {str(e)}")
+
             # Try to click the specific "See More" link if provided
             if see_more_id:
                 try:
-                    see_more = WebDriverWait(self.driver, 3).until(
+                    see_more = WebDriverWait(self.driver, 5).until(
                         EC.presence_of_element_located((By.ID, see_more_id))
                     )
                     if see_more.is_displayed():
                         logger.info(f"Clicking 'See More' link: {see_more_id}")
                         # Scroll to the link
                         self.driver.execute_script("arguments[0].scrollIntoView(true);", see_more)
-                        time.sleep(0.5)
-                        # Click using JavaScript
-                        self.driver.execute_script("arguments[0].click();", see_more)
                         time.sleep(1)
+                        # Try multiple click methods
+                        try:
+                            see_more.click()
+                        except:
+                            try:
+                                self.driver.execute_script("arguments[0].click();", see_more)
+                            except Exception as click_error:
+                                logger.warning(f"Failed to click 'See More' link: {str(click_error)}")
+                        time.sleep(2)  # Wait longer for content to load
                 except Exception as e:
                     logger.warning(f"No 'See More' link found with ID: {see_more_id}")
 
-            # Get all rows
-            rows = table.find_elements(By.TAG_NAME, "tr")
+            # Get all rows with retry
+            max_retries = 3
+            for attempt in range(max_retries):
+                rows = table.find_elements(By.TAG_NAME, "tr")
+                if rows:
+                    break
+                logger.warning(f"No rows found, attempt {attempt + 1} of {max_retries}")
+                time.sleep(1)
+            
             if not rows:
-                logger.warning("No rows found in table")
+                logger.warning("No rows found in table after all retries")
                 return []
 
-            # Get headers from first row
+            # Get headers with better error handling
             headers = []
             header_cells = rows[0].find_elements(By.TAG_NAME, "th")
             if not header_cells:
                 header_cells = rows[0].find_elements(By.TAG_NAME, "td")
             
-            headers = [cell.text.strip() for cell in header_cells]
+            if not header_cells:
+                logger.warning("No header cells found in table")
+                return []
+            
+            headers = []
+            for cell in header_cells:
+                try:
+                    text = cell.text.strip()
+                    if text:
+                        headers.append(text)
+                except Exception as e:
+                    logger.warning(f"Error getting header text: {str(e)}")
+            
+            if not headers:
+                logger.warning("No valid headers found")
+                return []
+            
             logger.info(f"Found headers: {headers}")
 
-            # Extract data from rows
+            # Extract data from rows with better error handling
             data = []
-            for row in rows[1:]:  # Skip header row
-                cells = row.find_elements(By.TAG_NAME, "td")
-                if len(cells) == len(headers):
-                    # Skip rows that contain "Close Extended List"
-                    row_text = ' '.join(cell.text.strip() for cell in cells)
-                    if "Close Extended List" in row_text:
-                        continue
+            for row_index, row in enumerate(rows[1:], 1):  # Skip header row
+                try:
+                    cells = row.find_elements(By.TAG_NAME, "td")
+                    if len(cells) == len(headers):
+                        # Skip rows that contain "Close Extended List"
+                        row_text = ' '.join(cell.text.strip() for cell in cells)
+                        if "Close Extended List" in row_text:
+                            continue
+                            
+                        row_data = {}
+                        for i, cell in enumerate(cells):
+                            if i < len(headers):
+                                try:
+                                    value = cell.text.strip()
+                                    if value:  # Only add non-empty values
+                                        row_data[headers[i]] = value
+                                except Exception as cell_error:
+                                    logger.warning(f"Error getting cell text at row {row_index}, column {i}: {str(cell_error)}")
                         
-                    row_data = {}
-                    for i, cell in enumerate(cells):
-                        if i < len(headers):
-                            value = cell.text.strip()
-                            if value:  # Only add non-empty values
-                                row_data[headers[i]] = value
-                    if row_data:  # Only add non-empty rows
-                        data.append(row_data)
+                        if row_data:  # Only add non-empty rows
+                            data.append(row_data)
+                except Exception as row_error:
+                    logger.warning(f"Error processing row {row_index}: {str(row_error)}")
+                    continue
 
-            logger.info(f"Extracted {len(data)} rows")
+            logger.info(f"Extracted {len(data)} rows of data")
             return data
 
         except Exception as e:
