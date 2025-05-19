@@ -281,9 +281,7 @@ class SantanderScraper:
             self.driver.find_element(By.XPATH, '//*[@id="lnk_langue_en"]').click()
 
             time.sleep(2)
-
-
-            self.driver.save_screenshot('screenshot.png')  
+ 
             
             # Wait for the content to load
             WebDriverWait(self.driver, 10).until(
