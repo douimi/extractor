@@ -270,6 +270,8 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/economic-political-outline"
             logger.info(f"Accessing economic data URL: {url}")
             self.driver.get(url)
+
+            self.driver.take_screenshot(f"draft.png")
             
             # Wait for the content to load
             WebDriverWait(self.driver, 10).until(
@@ -386,7 +388,9 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/foreign-trade-in-figures"
             logger.info(f"Accessing international business URL: {url}")
             self.driver.get(url)
-            time.sleep(2)  # Wait for page load
+            time.sleep(2)
+            
+              # Wait for page load
 
             data = {}
             

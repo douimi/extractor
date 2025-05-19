@@ -1840,3 +1840,14 @@ Extracting Main Services Imported...
 2025-05-19 19:15:55,328 - werkzeug - WARNING -  * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
 2025-05-19 19:15:55,330 - werkzeug - INFO -  * Running on http://192.168.11.105:5000/ (Press CTRL+C to quit)
+2025-05-19 19:27:55,030 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-19 19:27:55,205 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 19:27:55,675 - app - INFO - Extractor startup
+2025-05-19 19:27:56,922 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 19:27:56,922 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-19 19:27:57,088 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-19 19:27:57,088 - werkzeug - INFO -  * Running on http://192.168.11.105:5000/ (Press CTRL+C to quit)
+2025-05-19 19:28:01,571 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-19 19:28:01,723 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 19:28:02,317 - app - INFO - Extractor startup
