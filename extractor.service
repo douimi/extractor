@@ -1,0 +1,17 @@
+[Unit]
+Description=Extractor Marketing Report Generator
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/extractor
+Environment="PATH=/var/www/extractor/venv/bin"
+Environment="FLASK_APP=run.py"
+Environment="FLASK_ENV=production"
+Environment="PYTHONPATH=/var/www/extractor"
+ExecStart=/var/www/extractor/venv/bin/gunicorn -c gunicorn_config.py run:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target 

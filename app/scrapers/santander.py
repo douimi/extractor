@@ -48,7 +48,7 @@ class SantanderScraper:
         try:
             chrome_options = Options()
             if self.headless:
-                #chrome_options.add_argument("--headless=new")
+                chrome_options.add_argument("--headless=new")
                 print("Headless mode is enabled")
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
@@ -56,7 +56,6 @@ class SantanderScraper:
             
             service = ChromeService(ChromeDriverManager().install())
             self.driver = webdriver.Chrome(options=chrome_options)
-            self.driver.implicitly_wait(10)
             logger.info("Chrome WebDriver initialized successfully")
         except Exception as e:
             logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
@@ -144,23 +143,20 @@ class SantanderScraper:
             time.sleep(1)
             
             # Click login menu
-            login_menu = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, '//*[@id="btn_login_menu"]'))
-            )
+            login_menu = self.driver.find_element(By.XPATH, '//*[@id="btn_login_menu"]')
+
             login_menu.click()
             
             # Fill login form
-            email_input = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, '//*[@id="identification_identifiant"]'))
-            )
-            email_input.send_keys(email)
-            
+            email_input = self.driver.find_element(By.XPATH, '//*[@id="identification_identifiant"]')
+            self.driver.execute_script("arguments[0].value = arguments[1];", email_input, email)
+
             password_input = self.driver.find_element(By.XPATH, '//*[@id="identification_mot_de_passe"]')
-            password_input.send_keys(password)
+            self.driver.execute_script("arguments[0].value = arguments[1];", password_input, password)
             
             # Submit login form
             login_button = self.driver.find_element(By.XPATH, '//*[@id="identification_go"]')
-            login_button.click()
+            self.driver.execute_script("arguments[0].click();", login_button)
             
             # Wait for login to complete
             time.sleep(2)  # Add explicit wait for login completion
