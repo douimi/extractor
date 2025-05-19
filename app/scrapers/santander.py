@@ -274,6 +274,7 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/economic-political-outline"
             logger.info(f"Accessing economic data URL: {url}")
             self.driver.get(url)
+            time.sleep(2) 
 
             self.driver.find_element(By.XPATH, '//*[@id="btn_header_select_language"]').click()
 
@@ -399,6 +400,7 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/foreign-trade-in-figures"
             logger.info(f"Accessing international business URL: {url}")
             self.driver.get(url)
+            time.sleep(2) 
 
             self.driver.find_element(By.XPATH, '//*[@id="btn_header_select_language"]').click()
 
