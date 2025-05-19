@@ -235,6 +235,8 @@ class SantanderScraper:
             WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.ID, "contenu-contenu"))
             )
+
+            self.driver.find_element(By.XPATH, '//*[@id="lnk_langue_en"]').click()
             
             # Extract data using XPath
             data = {
@@ -270,6 +272,11 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/economic-political-outline"
             logger.info(f"Accessing economic data URL: {url}")
             self.driver.get(url)
+
+            self.driver.find_element(By.XPATH, '//*[@id="lnk_langue_en"]').click()
+
+            time.sleep(2)
+
 
             self.driver.save_screenshot('screenshot.png')  
             
@@ -388,6 +395,9 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/foreign-trade-in-figures"
             logger.info(f"Accessing international business URL: {url}")
             self.driver.get(url)
+
+            self.driver.find_element(By.XPATH, '//*[@id="lnk_langue_en"]').click()
+
             time.sleep(2)
             
               # Wait for page load
