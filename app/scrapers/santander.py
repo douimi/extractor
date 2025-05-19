@@ -49,7 +49,7 @@ class SantanderScraper:
         try:
             chrome_options = Options()
             if self.headless:
-                #chrome_options.add_argument("--headless=new")
+                chrome_options.add_argument("--headless=new")
                 logger.info("Headless mode is enabled")
             
             # Add robust cross-platform options
