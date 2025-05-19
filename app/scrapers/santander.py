@@ -236,6 +236,8 @@ class SantanderScraper:
                 EC.presence_of_element_located((By.ID, "contenu-contenu"))
             )
 
+            self.driver.find_element(By.XPATH, '//*[@id="btn_header_select_language"]').click()
+
             self.driver.find_element(By.XPATH, '//*[@id="lnk_langue_en"]').click()
             
             # Extract data using XPath
@@ -272,6 +274,8 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/economic-political-outline"
             logger.info(f"Accessing economic data URL: {url}")
             self.driver.get(url)
+
+            self.driver.find_element(By.XPATH, '//*[@id="btn_header_select_language"]').click()
 
             self.driver.find_element(By.XPATH, '//*[@id="lnk_langue_en"]').click()
 
@@ -395,6 +399,8 @@ class SantanderScraper:
             url = f"https://santandertrade.com/en/portal/analyse-markets/{self.format_country_url(country)}/foreign-trade-in-figures"
             logger.info(f"Accessing international business URL: {url}")
             self.driver.get(url)
+
+            self.driver.find_element(By.XPATH, '//*[@id="btn_header_select_language"]').click()
 
             self.driver.find_element(By.XPATH, '//*[@id="lnk_langue_en"]').click()
 
