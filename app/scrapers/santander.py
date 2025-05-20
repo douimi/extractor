@@ -61,6 +61,21 @@ class SantanderScraper:
             chrome_options.add_argument("--disable-setuid-sandbox")
             chrome_options.add_argument("--disable-web-security")
             
+            # Ajouter cette section pour résoudre le problème de user-data-dir
+            import uuid
+            import tempfile
+            import os
+            
+            # Créer un répertoire temporaire unique pour user-data-dir
+            temp_dir = os.path.join(tempfile.gettempdir(), f'chrome_user_data_{uuid.uuid4()}')
+            os.makedirs(temp_dir, exist_ok=True)
+            chrome_options.add_argument(f"--user-data-dir={temp_dir}")
+            
+            # Créer un répertoire de cache personnalisé
+            cache_dir = os.path.join('/var/www/extractor/selenium_cache', f'cache_{uuid.uuid4()}')
+            os.makedirs(cache_dir, exist_ok=True)
+            chrome_options.add_argument(f"--disk-cache-dir={cache_dir}")
+            
             # Add logging preferences
             chrome_options.add_argument("--enable-logging")
             chrome_options.add_argument("--v=1")
@@ -99,7 +114,7 @@ class SantanderScraper:
         except Exception as e:
             logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
             raise
-    
+
     def format_country_url(self, country):
         """Format country name for URL."""
         # If country is a code (e.g., 'CA', 'US'), use the mapping
