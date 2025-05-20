@@ -1851,3 +1851,391 @@ Extracting Main Services Imported...
 2025-05-19 19:28:01,571 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
 2025-05-19 19:28:01,723 - werkzeug - INFO -  * Restarting with stat
 2025-05-19 19:28:02,317 - app - INFO - Extractor startup
+2025-05-19 18:46:52,754 - app - INFO - Extractor startup
+2025-05-19 18:46:53,299 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-19 18:46:53,300 - werkzeug - INFO -  * Running on http://191.96.1.194:5000/ (Press CTRL+C to quit)
+2025-05-19 18:46:53,300 - werkzeug - INFO -  * Restarting with stat
+2025-05-19 18:46:53,471 - app - INFO - Extractor startup
+2025-05-19 18:46:54,010 - werkzeug - WARNING -  * Debugger is active!
+2025-05-19 18:46:54,011 - werkzeug - INFO -  * Debugger PIN: 573-644-442
+2025-05-19 18:46:56,068 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 18:46:56] "GET / HTTP/1.1" 200 -
+2025-05-19 18:47:04,065 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-19 18:47:04,542 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully with ChromeDriverManager
+2025-05-19 18:47:04,551 - app.scrapers.santander - INFO - Browser window size: {'width': 1920, 'height': 1080}
+2025-05-19 18:47:07,737 - app.scrapers.santander - INFO - Cookie preferences accepted
+2025-05-19 18:47:10,899 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 18:47:10] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-19 18:47:11,081 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/france/general-presentation
+2025-05-19 18:47:21,721 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 18:47:21,725 - app.services.openai_service - INFO - Generated introduction for general_info section for FR
+2025-05-19 18:47:26,737 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 18:47:26,739 - app.services.openai_service - INFO - Generated insights for general_info section for FR
+2025-05-19 18:47:26,741 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 18:47:26] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 18:47:26,909 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/france/economic-political-outline
+2025-05-19 18:47:33,074 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-19 18:47:41,833 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 18:47:41,834 - app.services.openai_service - INFO - Generated introduction for economic_data section for FR
+2025-05-19 18:47:46,218 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 18:47:46,219 - app.services.openai_service - INFO - Generated insights for economic_data section for FR
+2025-05-19 18:47:46,220 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 18:47:46] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 18:47:46,401 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/france/foreign-trade-in-figures
+2025-05-19 18:47:53,360 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-19 18:47:53,360 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-19 18:47:53,378 - app.scrapers.santander - INFO - Table found
+2025-05-19 18:47:54,419 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-19 18:47:58,602 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 18:47:59,076 - app.scrapers.santander - INFO - Extracted 4 rows of data
+2025-05-19 18:47:59,076 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-19 18:47:59,076 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 18:47:59,105 - app.scrapers.santander - INFO - Table found
+2025-05-19 18:48:00,157 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-19 18:48:04,340 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 18:48:05,179 - app.scrapers.santander - INFO - Extracted 7 rows of data
+2025-05-19 18:48:05,180 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-19 18:48:05,180 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-19 18:48:05,203 - app.scrapers.santander - INFO - Table found
+2025-05-19 18:48:06,265 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 18:48:10,481 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-19 18:48:11,201 - app.scrapers.santander - INFO - Extracted 7 rows of data
+2025-05-19 18:48:11,202 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-19 18:48:11,202 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 18:48:11,213 - app.scrapers.santander - INFO - Table found
+2025-05-19 18:48:12,249 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 18:48:16,398 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 18:48:17,333 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-19 18:48:17,333 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-19 18:48:17,333 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 18:48:17,344 - app.scrapers.santander - INFO - Table found
+2025-05-19 18:48:18,409 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 18:48:22,571 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 18:48:23,397 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-19 18:48:23,397 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-19 18:48:23,398 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-19 18:48:23,408 - app.scrapers.santander - INFO - Table found
+2025-05-19 18:48:24,444 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-19 18:48:28,588 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-19 18:48:29,393 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-19 18:48:29,393 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-19 18:48:29,393 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-19 18:48:29,401 - app.scrapers.santander - INFO - Table found
+2025-05-19 18:48:30,440 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-19 18:48:34,577 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-19 18:48:35,436 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-19 18:48:44,657 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 18:48:44,658 - app.services.openai_service - INFO - Generated introduction for international_business section for FR
+2025-05-19 18:48:49,984 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-19 18:48:49,985 - app.services.openai_service - INFO - Generated insights for international_business section for FR
+2025-05-19 18:48:50,092 - app.scrapers.santander - INFO - Cache cleared
+2025-05-19 18:48:50,095 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 18:48:50] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-19 18:48:50,322 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-19 18:48:50,322 - app.routes.routes - INFO - Report data copied. Origin: CA, Destination: FR
+2025-05-19 18:48:50,344 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 18:48:50] "GET /report HTTP/1.1" 200 -
+2025-05-19 19:54:27,467 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 19:54:27] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-19 19:54:27,560 - werkzeug - INFO - 105.188.126.240 - - [19/May/2025 19:54:27] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-19 20:17:10,978 - werkzeug - INFO - 120.0.52.13 - - [19/May/2025 20:17:10] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-19 20:17:11,172 - werkzeug - ERROR - 120.0.52.165 - - [19/May/2025 20:17:11] code 400, message Bad request version ("}~gk${VV*,*\x9f\x8dî\x90\x9be'ñUFaE,Ýé´j\x10ñ\x9c")
+2025-05-19 20:17:11,173 - werkzeug - INFO - 120.0.52.165 - - [19/May/2025 20:17:11] "[31m[1m î  êHy¬"77@M°;·*|ó^ÿ)XÅZ	tåª }~gk${VV*,*îe'ñUFaE,Ýé´jñ[0m" 400 -
+2025-05-19 20:17:11,566 - werkzeug - ERROR - 220.167.232.90 - - [19/May/2025 20:17:11] code 400, message Bad request version ('U>b\x87')
+2025-05-19 20:17:11,566 - werkzeug - INFO - 220.167.232.90 - - [19/May/2025 20:17:11] "[31m[1m î  êcÚ\ÏÇ>­ueÔÑ>2?ÿy`Em|n_¾ U>b[0m" 400 -
+2025-05-19 20:17:19,766 - werkzeug - ERROR - 111.113.89.137 - - [19/May/2025 20:17:19] code 400, message Bad request syntax ('{\x01\x00\x1613911111112À¨\x01\x01\x13\x90{')
+2025-05-19 20:17:19,767 - werkzeug - INFO - 111.113.89.137 - - [19/May/2025 20:17:19] "[31m[1m{ 13911111112À¨{[0m" 400 -
+2025-05-19 20:17:20,180 - werkzeug - INFO - 101.67.137.66 - - [19/May/2025 20:17:20] "[32mGET / HTTP/1.0[0m" 302 -
+2025-05-19 20:17:28,369 - werkzeug - ERROR - 218.104.149.217 - - [19/May/2025 20:17:28] code 400, message Bad request syntax ('~\x00\x02\x00\x00\x02\x00\x00\x00\x00\x15\x00\x032~')
+2025-05-19 20:17:28,369 - werkzeug - INFO - 218.104.149.217 - - [19/May/2025 20:17:28] "[31m[1m~        2~[0m" 400 -
+2025-05-19 20:17:36,349 - werkzeug - ERROR - 171.118.67.111 - - [19/May/2025 20:17:36] code 400, message Bad request syntax ('ÈU\x00\x00\x00\x05\x00+\x0e\x01\x00')
+2025-05-19 20:17:36,349 - werkzeug - INFO - 171.118.67.111 - - [19/May/2025 20:17:36] "[31m[1mÈU    + [0m" 400 -
+2025-05-19 20:18:32,218 - werkzeug - INFO - 60.16.213.175 - - [19/May/2025 20:18:32] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-19 20:18:33,783 - werkzeug - INFO - 43.248.108.253 - - [19/May/2025 20:18:33] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-19 20:18:48,412 - werkzeug - INFO - 175.30.48.108 - - [19/May/2025 20:18:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-20 14:31:43,090 - app - INFO - Extractor startup
+2025-05-20 14:34:17,787 - app - INFO - Extractor startup
+2025-05-20 14:40:17,973 - app - INFO - Extractor startup
+2025-05-20 14:41:02,726 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-20 14:41:19,337 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,337 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,337 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,337 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,337 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,337 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,337 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,542 - app.scrapers.santander - WARNING - Failed to initialize with ChromeDriverManager: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55561d7ed75a <unknown>
+#1 0x55561d2900a0 <unknown>
+#2 0x55561d2ca1ff <unknown>
+#3 0x55561d2c5c0f <unknown>
+#4 0x55561d315d75 <unknown>
+#5 0x55561d315296 <unknown>
+#6 0x55561d307173 <unknown>
+#7 0x55561d2d3d4b <unknown>
+#8 0x55561d2d49b1 <unknown>
+#9 0x55561d7b290b <unknown>
+#10 0x55561d7b680a <unknown>
+#11 0x55561d79a662 <unknown>
+#12 0x55561d7b7394 <unknown>
+#13 0x55561d77f49f <unknown>
+#14 0x55561d7db538 <unknown>
+#15 0x55561d7db716 <unknown>
+#16 0x55561d7ec5c6 <unknown>
+#17 0x7fd3ee3261f5 <unknown>
+
+2025-05-20 14:41:19,542 - app.scrapers.santander - INFO - Attempting fallback to system ChromeDriver
+2025-05-20 14:41:19,689 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,689 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,689 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,689 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,689 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:41:19,774 - app.scrapers.santander - ERROR - Fallback to system ChromeDriver failed: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x56146021575a <unknown>
+#1 0x56145fcb80a0 <unknown>
+#2 0x56145fcf21ff <unknown>
+#3 0x56145fcedc0f <unknown>
+#4 0x56145fd3dd75 <unknown>
+#5 0x56145fd3d296 <unknown>
+#6 0x56145fd2f173 <unknown>
+#7 0x56145fcfbd4b <unknown>
+#8 0x56145fcfc9b1 <unknown>
+#9 0x5614601da90b <unknown>
+#10 0x5614601de80a <unknown>
+#11 0x5614601c2662 <unknown>
+#12 0x5614601df394 <unknown>
+#13 0x5614601a749f <unknown>
+#14 0x561460203538 <unknown>
+#15 0x561460203716 <unknown>
+#16 0x5614602145c6 <unknown>
+#17 0x7f00e296d1f5 <unknown>
+
+2025-05-20 14:41:19,774 - app.scrapers.santander - ERROR - Failed to initialize Chrome WebDriver: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x56146021575a <unknown>
+#1 0x56145fcb80a0 <unknown>
+#2 0x56145fcf21ff <unknown>
+#3 0x56145fcedc0f <unknown>
+#4 0x56145fd3dd75 <unknown>
+#5 0x56145fd3d296 <unknown>
+#6 0x56145fd2f173 <unknown>
+#7 0x56145fcfbd4b <unknown>
+#8 0x56145fcfc9b1 <unknown>
+#9 0x5614601da90b <unknown>
+#10 0x5614601de80a <unknown>
+#11 0x5614601c2662 <unknown>
+#12 0x5614601df394 <unknown>
+#13 0x5614601a749f <unknown>
+#14 0x561460203538 <unknown>
+#15 0x561460203716 <unknown>
+#16 0x5614602145c6 <unknown>
+#17 0x7f00e296d1f5 <unknown>
+
+2025-05-20 14:41:19,774 - app.services.report_service - ERROR - Failed to initialize scrapers: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x56146021575a <unknown>
+#1 0x56145fcb80a0 <unknown>
+#2 0x56145fcf21ff <unknown>
+#3 0x56145fcedc0f <unknown>
+#4 0x56145fd3dd75 <unknown>
+#5 0x56145fd3d296 <unknown>
+#6 0x56145fd2f173 <unknown>
+#7 0x56145fcfbd4b <unknown>
+#8 0x56145fcfc9b1 <unknown>
+#9 0x5614601da90b <unknown>
+#10 0x5614601de80a <unknown>
+#11 0x5614601c2662 <unknown>
+#12 0x5614601df394 <unknown>
+#13 0x5614601a749f <unknown>
+#14 0x561460203538 <unknown>
+#15 0x561460203716 <unknown>
+#16 0x5614602145c6 <unknown>
+#17 0x7f00e296d1f5 <unknown>
+
+2025-05-20 14:44:13,369 - app - INFO - Extractor startup
+2025-05-20 14:44:23,015 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-20 14:44:23,168 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,168 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,168 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,168 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,168 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,253 - app.scrapers.santander - WARNING - Failed to initialize with ChromeDriverManager: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5631b124875a <unknown>
+#1 0x5631b0ceb0a0 <unknown>
+#2 0x5631b0d251ff <unknown>
+#3 0x5631b0d20c0f <unknown>
+#4 0x5631b0d70d75 <unknown>
+#5 0x5631b0d70296 <unknown>
+#6 0x5631b0d62173 <unknown>
+#7 0x5631b0d2ed4b <unknown>
+#8 0x5631b0d2f9b1 <unknown>
+#9 0x5631b120d90b <unknown>
+#10 0x5631b121180a <unknown>
+#11 0x5631b11f5662 <unknown>
+#12 0x5631b1212394 <unknown>
+#13 0x5631b11da49f <unknown>
+#14 0x5631b1236538 <unknown>
+#15 0x5631b1236716 <unknown>
+#16 0x5631b12475c6 <unknown>
+#17 0x7f8aee69b1f5 <unknown>
+
+2025-05-20 14:44:23,253 - app.scrapers.santander - INFO - Attempting fallback to system ChromeDriver
+2025-05-20 14:44:23,404 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,404 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,404 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,404 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,405 - selenium.webdriver.common.selenium_manager - WARNING - Cache folder (/var/www/.cache/selenium) cannot be created: Permission denied (os error 13)
+2025-05-20 14:44:23,489 - app.scrapers.santander - ERROR - Fallback to system ChromeDriver failed: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55ff085f575a <unknown>
+#1 0x55ff080980a0 <unknown>
+#2 0x55ff080d21ff <unknown>
+#3 0x55ff080cdc0f <unknown>
+#4 0x55ff0811dd75 <unknown>
+#5 0x55ff0811d296 <unknown>
+#6 0x55ff0810f173 <unknown>
+#7 0x55ff080dbd4b <unknown>
+#8 0x55ff080dc9b1 <unknown>
+#9 0x55ff085ba90b <unknown>
+#10 0x55ff085be80a <unknown>
+#11 0x55ff085a2662 <unknown>
+#12 0x55ff085bf394 <unknown>
+#13 0x55ff0858749f <unknown>
+#14 0x55ff085e3538 <unknown>
+#15 0x55ff085e3716 <unknown>
+#16 0x55ff085f45c6 <unknown>
+#17 0x7ffb052931f5 <unknown>
+
+2025-05-20 14:44:23,489 - app.scrapers.santander - ERROR - Failed to initialize Chrome WebDriver: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55ff085f575a <unknown>
+#1 0x55ff080980a0 <unknown>
+#2 0x55ff080d21ff <unknown>
+#3 0x55ff080cdc0f <unknown>
+#4 0x55ff0811dd75 <unknown>
+#5 0x55ff0811d296 <unknown>
+#6 0x55ff0810f173 <unknown>
+#7 0x55ff080dbd4b <unknown>
+#8 0x55ff080dc9b1 <unknown>
+#9 0x55ff085ba90b <unknown>
+#10 0x55ff085be80a <unknown>
+#11 0x55ff085a2662 <unknown>
+#12 0x55ff085bf394 <unknown>
+#13 0x55ff0858749f <unknown>
+#14 0x55ff085e3538 <unknown>
+#15 0x55ff085e3716 <unknown>
+#16 0x55ff085f45c6 <unknown>
+#17 0x7ffb052931f5 <unknown>
+
+2025-05-20 14:44:23,489 - app.services.report_service - ERROR - Failed to initialize scrapers: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55ff085f575a <unknown>
+#1 0x55ff080980a0 <unknown>
+#2 0x55ff080d21ff <unknown>
+#3 0x55ff080cdc0f <unknown>
+#4 0x55ff0811dd75 <unknown>
+#5 0x55ff0811d296 <unknown>
+#6 0x55ff0810f173 <unknown>
+#7 0x55ff080dbd4b <unknown>
+#8 0x55ff080dc9b1 <unknown>
+#9 0x55ff085ba90b <unknown>
+#10 0x55ff085be80a <unknown>
+#11 0x55ff085a2662 <unknown>
+#12 0x55ff085bf394 <unknown>
+#13 0x55ff0858749f <unknown>
+#14 0x55ff085e3538 <unknown>
+#15 0x55ff085e3716 <unknown>
+#16 0x55ff085f45c6 <unknown>
+#17 0x7ffb052931f5 <unknown>
+
+2025-05-20 14:45:51,723 - app - INFO - Extractor startup
+2025-05-20 14:46:02,084 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-20 14:46:13,866 - app.scrapers.santander - WARNING - Failed to initialize with ChromeDriverManager: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x560d97fea75a <unknown>
+#1 0x560d97a8d0a0 <unknown>
+#2 0x560d97ac71ff <unknown>
+#3 0x560d97ac2c0f <unknown>
+#4 0x560d97b12d75 <unknown>
+#5 0x560d97b12296 <unknown>
+#6 0x560d97b04173 <unknown>
+#7 0x560d97ad0d4b <unknown>
+#8 0x560d97ad19b1 <unknown>
+#9 0x560d97faf90b <unknown>
+#10 0x560d97fb380a <unknown>
+#11 0x560d97f97662 <unknown>
+#12 0x560d97fb4394 <unknown>
+#13 0x560d97f7c49f <unknown>
+#14 0x560d97fd8538 <unknown>
+#15 0x560d97fd8716 <unknown>
+#16 0x560d97fe95c6 <unknown>
+#17 0x7f5da43ab1f5 <unknown>
+
+2025-05-20 14:46:13,866 - app.scrapers.santander - INFO - Attempting fallback to system ChromeDriver
+2025-05-20 14:46:13,958 - app.scrapers.santander - ERROR - Fallback to system ChromeDriver failed: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x562c638df75a <unknown>
+#1 0x562c633820a0 <unknown>
+#2 0x562c633bc1ff <unknown>
+#3 0x562c633b7c0f <unknown>
+#4 0x562c63407d75 <unknown>
+#5 0x562c63407296 <unknown>
+#6 0x562c633f9173 <unknown>
+#7 0x562c633c5d4b <unknown>
+#8 0x562c633c69b1 <unknown>
+#9 0x562c638a490b <unknown>
+#10 0x562c638a880a <unknown>
+#11 0x562c6388c662 <unknown>
+#12 0x562c638a9394 <unknown>
+#13 0x562c6387149f <unknown>
+#14 0x562c638cd538 <unknown>
+#15 0x562c638cd716 <unknown>
+#16 0x562c638de5c6 <unknown>
+#17 0x7f66c41371f5 <unknown>
+
+2025-05-20 14:46:13,958 - app.scrapers.santander - ERROR - Failed to initialize Chrome WebDriver: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x562c638df75a <unknown>
+#1 0x562c633820a0 <unknown>
+#2 0x562c633bc1ff <unknown>
+#3 0x562c633b7c0f <unknown>
+#4 0x562c63407d75 <unknown>
+#5 0x562c63407296 <unknown>
+#6 0x562c633f9173 <unknown>
+#7 0x562c633c5d4b <unknown>
+#8 0x562c633c69b1 <unknown>
+#9 0x562c638a490b <unknown>
+#10 0x562c638a880a <unknown>
+#11 0x562c6388c662 <unknown>
+#12 0x562c638a9394 <unknown>
+#13 0x562c6387149f <unknown>
+#14 0x562c638cd538 <unknown>
+#15 0x562c638cd716 <unknown>
+#16 0x562c638de5c6 <unknown>
+#17 0x7f66c41371f5 <unknown>
+
+2025-05-20 14:46:13,959 - app.services.report_service - ERROR - Failed to initialize scrapers: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x562c638df75a <unknown>
+#1 0x562c633820a0 <unknown>
+#2 0x562c633bc1ff <unknown>
+#3 0x562c633b7c0f <unknown>
+#4 0x562c63407d75 <unknown>
+#5 0x562c63407296 <unknown>
+#6 0x562c633f9173 <unknown>
+#7 0x562c633c5d4b <unknown>
+#8 0x562c633c69b1 <unknown>
+#9 0x562c638a490b <unknown>
+#10 0x562c638a880a <unknown>
+#11 0x562c6388c662 <unknown>
+#12 0x562c638a9394 <unknown>
+#13 0x562c6387149f <unknown>
+#14 0x562c638cd538 <unknown>
+#15 0x562c638cd716 <unknown>
+#16 0x562c638de5c6 <unknown>
+#17 0x7f66c41371f5 <unknown>
+

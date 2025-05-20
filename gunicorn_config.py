@@ -1,7 +1,7 @@
 import multiprocessing
 
 # Gunicorn configuration
-bind = "unix:/tmp/gunicorn.sock"  # Unix socket for Nginx to connect to
+bind = "0.0.0.0:5000"  # Unix socket for Nginx to connect to
 workers = multiprocessing.cpu_count() * 2 + 1  # Number of worker processes
 worker_class = "sync"  # Worker class to use
 timeout = 120  # Worker timeout in seconds
