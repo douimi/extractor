@@ -2239,3 +2239,90 @@ Stacktrace:
 #16 0x562c638de5c6 <unknown>
 #17 0x7f66c41371f5 <unknown>
 
+2025-05-20 15:02:23,547 - app - INFO - Extractor startup
+2025-05-20 15:02:42,318 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-20 15:02:42,469 - app.scrapers.santander - WARNING - Failed to initialize with ChromeDriverManager: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55a776dc675a <unknown>
+#1 0x55a7768690a0 <unknown>
+#2 0x55a7768a31ff <unknown>
+#3 0x55a77689ec0f <unknown>
+#4 0x55a7768eed75 <unknown>
+#5 0x55a7768ee296 <unknown>
+#6 0x55a7768e0173 <unknown>
+#7 0x55a7768acd4b <unknown>
+#8 0x55a7768ad9b1 <unknown>
+#9 0x55a776d8b90b <unknown>
+#10 0x55a776d8f80a <unknown>
+#11 0x55a776d73662 <unknown>
+#12 0x55a776d90394 <unknown>
+#13 0x55a776d5849f <unknown>
+#14 0x55a776db4538 <unknown>
+#15 0x55a776db4716 <unknown>
+#16 0x55a776dc55c6 <unknown>
+#17 0x7fe63fe4c1f5 <unknown>
+
+2025-05-20 15:02:42,470 - app.scrapers.santander - INFO - Attempting fallback to system ChromeDriver
+2025-05-20 15:02:42,682 - app.scrapers.santander - ERROR - Fallback to system ChromeDriver failed: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x557c2ef7575a <unknown>
+#1 0x557c2ea180a0 <unknown>
+#2 0x557c2ea521ff <unknown>
+#3 0x557c2ea4dc0f <unknown>
+#4 0x557c2ea9dd75 <unknown>
+#5 0x557c2ea9d296 <unknown>
+#6 0x557c2ea8f173 <unknown>
+#7 0x557c2ea5bd4b <unknown>
+#8 0x557c2ea5c9b1 <unknown>
+#9 0x557c2ef3a90b <unknown>
+#10 0x557c2ef3e80a <unknown>
+#11 0x557c2ef22662 <unknown>
+#12 0x557c2ef3f394 <unknown>
+#13 0x557c2ef0749f <unknown>
+#14 0x557c2ef63538 <unknown>
+#15 0x557c2ef63716 <unknown>
+#16 0x557c2ef745c6 <unknown>
+#17 0x7fb8ef3081f5 <unknown>
+
+2025-05-20 15:02:42,682 - app.scrapers.santander - ERROR - Failed to initialize Chrome WebDriver: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x557c2ef7575a <unknown>
+#1 0x557c2ea180a0 <unknown>
+#2 0x557c2ea521ff <unknown>
+#3 0x557c2ea4dc0f <unknown>
+#4 0x557c2ea9dd75 <unknown>
+#5 0x557c2ea9d296 <unknown>
+#6 0x557c2ea8f173 <unknown>
+#7 0x557c2ea5bd4b <unknown>
+#8 0x557c2ea5c9b1 <unknown>
+#9 0x557c2ef3a90b <unknown>
+#10 0x557c2ef3e80a <unknown>
+#11 0x557c2ef22662 <unknown>
+#12 0x557c2ef3f394 <unknown>
+#13 0x557c2ef0749f <unknown>
+#14 0x557c2ef63538 <unknown>
+#15 0x557c2ef63716 <unknown>
+#16 0x557c2ef745c6 <unknown>
+#17 0x7fb8ef3081f5 <unknown>
+
+2025-05-20 15:02:42,682 - app.services.report_service - ERROR - Failed to initialize scrapers: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x557c2ef7575a <unknown>
+#1 0x557c2ea180a0 <unknown>
+#2 0x557c2ea521ff <unknown>
+#3 0x557c2ea4dc0f <unknown>
+#4 0x557c2ea9dd75 <unknown>
+#5 0x557c2ea9d296 <unknown>
+#6 0x557c2ea8f173 <unknown>
+#7 0x557c2ea5bd4b <unknown>
+#8 0x557c2ea5c9b1 <unknown>
+#9 0x557c2ef3a90b <unknown>
+#10 0x557c2ef3e80a <unknown>
+#11 0x557c2ef22662 <unknown>
+#12 0x557c2ef3f394 <unknown>
+#13 0x557c2ef0749f <unknown>
+#14 0x557c2ef63538 <unknown>
+#15 0x557c2ef63716 <unknown>
+#16 0x557c2ef745c6 <unknown>
+#17 0x7fb8ef3081f5 <unknown>
+
