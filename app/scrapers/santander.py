@@ -112,7 +112,7 @@ class SantanderScraper:
                     if os.name == 'posix':  # Linux/Unix
                         chromedriver_path = "/usr/bin/chromedriver"
                     else:  # Windows
-                        chromedriver_path = "chromedriver.exe"
+                        chromedriver_path = "/usr/bin/chromedriver"
                     
                     service = Service(executable_path=chromedriver_path)
                     self.driver = webdriver.Chrome(service=service, options=chrome_options)
