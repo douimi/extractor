@@ -61,21 +61,6 @@ class SantanderScraper:
             chrome_options.add_argument("--disable-setuid-sandbox")
             chrome_options.add_argument("--disable-web-security")
             
-            # Ajouter cette section pour résoudre le problème de user-data-dir
-            import uuid
-            import tempfile
-            import os
-            
-            # Créer un répertoire temporaire unique pour user-data-dir
-            temp_dir = os.path.join(tempfile.gettempdir(), f'chrome_user_data_{uuid.uuid4()}')
-            os.makedirs(temp_dir, exist_ok=True)
-            chrome_options.add_argument(f"--user-data-dir={temp_dir}")
-            
-            # Créer un répertoire de cache personnalisé
-            cache_dir = os.path.join('/var/www/extractor/selenium_cache', f'cache_{uuid.uuid4()}')
-            os.makedirs(cache_dir, exist_ok=True)
-            chrome_options.add_argument(f"--disk-cache-dir={cache_dir}")
-            
             # Add logging preferences
             chrome_options.add_argument("--enable-logging")
             chrome_options.add_argument("--v=1")
@@ -84,11 +69,42 @@ class SantanderScraper:
             chrome_options.add_argument("--dns-prefetch-disable")
             chrome_options.add_argument("--disable-features=VizDisplayCompositor")
             
+            # Créer un répertoire de données utilisateur unique
+            import uuid
+            
+            # Créer le chemin de base pour les données Chrome
+            chrome_data_dir = "/var/www/extractor/chrome_data"
             try:
+                if not os.path.exists(chrome_data_dir):
+                    os.makedirs(chrome_data_dir, exist_ok=True)
+            except Exception as e:
+                logger.warning(f"Could not create chrome_data directory: {str(e)}")
+                # Utiliser /tmp comme fallback
+                chrome_data_dir = "/tmp"
+            
+            # Créer un sous-répertoire unique avec UUID
+            unique_id = str(uuid.uuid4())[:8]  # Utiliser les 8 premiers caractères pour raccourcir le chemin
+            user_data_dir = os.path.join(chrome_data_dir, f"user_data_{unique_id}")
+            
+            try:
+                os.makedirs(user_data_dir, exist_ok=True)
+                logger.info(f"Created unique user data directory: {user_data_dir}")
+            except Exception as e:
+                logger.warning(f"Could not create user data directory: {str(e)}")
+                # Fallback vers le répertoire temporaire
+                user_data_dir = os.path.join("/tmp", f"chrome_user_data_{unique_id}")
+                os.makedirs(user_data_dir, exist_ok=True)
+                logger.info(f"Created fallback user data directory: {user_data_dir}")
+            
+            # Ajouter l'option user-data-dir à Chrome
+            chrome_options.add_argument(f"--user-data-dir={user_data_dir}")
+            
+            try:
+                # Essayer d'initialiser le WebDriver sans ChromeDriverManager
                 self.driver = webdriver.Chrome(options=chrome_options)
-                logger.info("Chrome WebDriver initialized successfully with ChromeDriverManager")
+                logger.info("Chrome WebDriver initialized successfully")
             except Exception as chrome_error:
-                logger.warning(f"Failed to initialize with ChromeDriverManager: {str(chrome_error)}")
+                logger.warning(f"Failed to initialize Chrome WebDriver: {str(chrome_error)}")
                 logger.info("Attempting fallback to system ChromeDriver")
                 
                 # Fallback to system ChromeDriver
@@ -98,7 +114,8 @@ class SantanderScraper:
                     else:  # Windows
                         chromedriver_path = "chromedriver.exe"
                     
-                    self.driver = webdriver.Chrome(options=chrome_options)
+                    service = Service(executable_path=chromedriver_path)
+                    self.driver = webdriver.Chrome(service=service, options=chrome_options)
                     logger.info("Chrome WebDriver initialized successfully with system ChromeDriver")
                 except Exception as fallback_error:
                     logger.error(f"Fallback to system ChromeDriver failed: {str(fallback_error)}")
@@ -115,75 +132,6 @@ class SantanderScraper:
             logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
             raise
 
-    def format_country_url(self, country):
-        """Format country name for URL."""
-        # If country is a code (e.g., 'CA', 'US'), use the mapping
-        if country in self.COUNTRY_URL_MAPPING:
-            return self.COUNTRY_URL_MAPPING[country]
-        
-        # For full country names, convert to lowercase and replace spaces with hyphens
-        return country.lower().replace(' ', '-')
-    
-    def handle_cookie_preferences(self):
-        """Handle the cookie preferences popup."""
-        try:
-            # Wait a moment for any animations to complete
-            time.sleep(2)
-            
-            # Try different cookie popup patterns
-            cookie_patterns = [
-                # Pattern 1: Standard cookie modal
-                {
-                    'modal': (By.CLASS_NAME, "modal-content"),
-                    'button': (By.ID, "cookie-selection")
-                },
-                # Pattern 2: Alternative cookie modal
-                {
-                    'modal': (By.CLASS_NAME, "cookie-modal"),
-                    'button': (By.CLASS_NAME, "cookie-accept")
-                },
-                # Pattern 3: Simple cookie banner
-                {
-                    'modal': (By.CLASS_NAME, "cookie-banner"),
-                    'button': (By.CLASS_NAME, "cookie-button")
-                }
-            ]
-            
-            for pattern in cookie_patterns:
-                try:
-                    # Check if modal is present
-                    modal = WebDriverWait(self.driver, 5).until(
-                        EC.presence_of_element_located(pattern['modal'])
-                    )
-                    
-                    # Try to find and click the accept button
-                    accept_button = WebDriverWait(self.driver, 5).until(
-                        EC.element_to_be_clickable(pattern['button'])
-                    )
-                    accept_button.click()
-                    logger.info("Cookie preferences accepted")
-                    
-                    # Wait for modal to disappear
-                    WebDriverWait(self.driver, 5).until(
-                        EC.invisibility_of_element_located(pattern['modal'])
-                    )
-                    return True
-                    
-                except TimeoutException:
-                    logger.debug(f"Cookie pattern not found: {pattern}")
-                    continue
-                except Exception as e:
-                    logger.debug(f"Error with cookie pattern {pattern}: {str(e)}")
-                    continue
-            
-            # If we get here, no cookie popup was found or handled
-            logger.info("No cookie popup found or already accepted")
-            return True
-            
-        except Exception as e:
-            logger.warning(f"Error handling cookie preferences: {str(e)}")
-            return False
-    
     def login(self, email, password):
         """Login to Santander Trade Portal."""
         try:
