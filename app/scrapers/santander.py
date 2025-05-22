@@ -15,6 +15,7 @@ import shutil
 from datetime import datetime, timedelta
 import uuid
 import subprocess
+import psutil
 
 logger = logging.getLogger(__name__)
 
@@ -55,8 +56,12 @@ class SantanderScraper:
             
             # Kill any existing Chrome processes
             try:
-                import subprocess
-                subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                for proc in psutil.process_iter(['name']):
+                    try:
+                        if 'chrome' in proc.info['name'].lower():
+                            proc.kill()
+                    except (psutil.NoSuchProcess, psutil.AccessDenied):
+                        pass
                 time.sleep(2)  # Give processes time to close
                 logger.info("Killed existing Chrome processes")
             except Exception as e:
@@ -89,11 +94,8 @@ class SantanderScraper:
             
             try:
                 os.makedirs(chrome_data_dir, exist_ok=True)
-                os.chmod(chrome_data_dir, 0o755)  # Use octal notation for permissions
+                os.chmod(chrome_data_dir, 0o777)  # Give full permissions temporarily
                 logger.info(f"Created Chrome data directory: {chrome_data_dir}")
-                
-                # Ensure www-data owns the directory when running as service
-                subprocess.run(['chown', '-R', 'www-data:www-data', chrome_data_dir], check=False)
                 
             except Exception as e:
                 logger.warning(f"Could not create Chrome data directory: {str(e)}")
@@ -151,7 +153,7 @@ class SantanderScraper:
                             # Create new directory for next attempt
                             chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{pid}_{unique_id}_retry{attempt}")
                             os.makedirs(chrome_data_dir, exist_ok=True)
-                            os.chmod(chrome_data_dir, 0o755)
+                            os.chmod(chrome_data_dir, 0o777)
                             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
                 
                 # If we get here, all attempts failed
@@ -175,8 +177,12 @@ class SantanderScraper:
         try:
             # Kill any existing Chrome processes first
             try:
-                import subprocess
-                subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                for proc in psutil.process_iter(['name']):
+                    try:
+                        if 'chrome' in proc.info['name'].lower():
+                            proc.kill()
+                    except (psutil.NoSuchProcess, psutil.AccessDenied):
+                        pass
                 time.sleep(1)  # Give processes time to close
             except Exception as e:
                 logger.warning(f"Failed to kill Chrome processes: {str(e)}")
