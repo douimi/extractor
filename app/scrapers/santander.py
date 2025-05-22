@@ -6,12 +6,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.core.utils import ChromeType
 import time
 import logging
 from typing import Dict, List
 from functools import lru_cache
 import os
+import shutil
+from datetime import datetime, timedelta
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -79,71 +82,37 @@ class SantanderScraper:
             chrome_options.add_argument('--disable-prompt-on-repost')
             
             # Create unique user data directory
-            import uuid
-            import shutil
-            from datetime import datetime
-            
-            # Base directory for Chrome data
-            base_chrome_dir = "/tmp/chrome_data" if not os.path.exists("/var/lib/chrome_data") else "/var/lib/chrome_data"
-            
-            # Create unique subdirectory with timestamp
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             unique_id = str(uuid.uuid4())[:8]
-            chrome_data_dir = os.path.join(base_chrome_dir, f"chrome_{timestamp}_{unique_id}")
+            
+            # Use /tmp for Chrome data to avoid permission issues
+            chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{unique_id}")
             
             try:
                 os.makedirs(chrome_data_dir, exist_ok=True)
                 logger.info(f"Created Chrome data directory: {chrome_data_dir}")
             except Exception as e:
                 logger.warning(f"Could not create Chrome data directory: {str(e)}")
-                # Fallback to /tmp with different name
-                chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{unique_id}")
-                os.makedirs(chrome_data_dir, exist_ok=True)
-                logger.info(f"Created fallback Chrome data directory: {chrome_data_dir}")
+                raise
             
             # Add user-data-dir to Chrome options
             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
             
-            driver = None
-            last_error = None
-            
-            # Try automatic ChromeDriver detection first
             try:
-                driver = webdriver.Chrome(options=chrome_options)
-                logger.info("Chrome WebDriver initialized successfully with automatic detection")
-            except Exception as auto_error:
-                logger.warning(f"Automatic ChromeDriver detection failed: {str(auto_error)}")
-                last_error = auto_error
-                
-                # If automatic detection fails, try explicit paths
-                chromedriver_locations = [
-                    '/usr/local/bin/chromedriver',
-                    '/usr/bin/chromedriver',
-                    'chromedriver'
-                ]
-                
-                for driver_path in chromedriver_locations:
-                    if driver is not None:
-                        break
-                        
-                    try:
-                        service = Service(executable_path=driver_path)
-                        driver = webdriver.Chrome(service=service, options=chrome_options)
-                        logger.info(f"Chrome WebDriver initialized successfully with {driver_path}")
-                    except Exception as e:
-                        last_error = e
-                        logger.warning(f"Failed to initialize Chrome WebDriver with {driver_path}: {str(e)}")
-                        # Clean up the user data directory if initialization failed
-                        try:
-                            shutil.rmtree(chrome_data_dir, ignore_errors=True)
-                        except:
-                            pass
-            
-            if driver is None:
-                raise Exception(f"Failed to initialize Chrome WebDriver. Last error: {str(last_error)}")
-            
-            self.driver = driver
-            self._current_chrome_data_dir = chrome_data_dir  # Store for cleanup
+                # Use webdriver-manager to handle ChromeDriver installation
+                service = Service(ChromeDriverManager().install())
+                driver = webdriver.Chrome(service=service, options=chrome_options)
+                logger.info("Chrome WebDriver initialized successfully with webdriver-manager")
+                self.driver = driver
+                self._current_chrome_data_dir = chrome_data_dir
+            except Exception as e:
+                logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
+                # Clean up the user data directory if initialization failed
+                try:
+                    shutil.rmtree(chrome_data_dir, ignore_errors=True)
+                except:
+                    pass
+                raise
             
             # Set page load timeout
             self.driver.set_page_load_timeout(30)
@@ -159,9 +128,6 @@ class SantanderScraper:
     def _cleanup_old_chrome_data(self):
         """Clean up old Chrome user data directories."""
         try:
-            import shutil
-            from datetime import datetime, timedelta
-            
             # Directories to check
             chrome_dirs = ["/var/lib/chrome_data", "/tmp"]
             
@@ -692,7 +658,6 @@ class SantanderScraper:
             # Clean up the current Chrome data directory
             try:
                 if hasattr(self, '_current_chrome_data_dir') and os.path.exists(self._current_chrome_data_dir):
-                    import shutil
                     shutil.rmtree(self._current_chrome_data_dir, ignore_errors=True)
                     logger.info(f"Cleaned up Chrome data directory: {self._current_chrome_data_dir}")
             except Exception as e:
