@@ -57,14 +57,15 @@ class SantanderScraper:
             try:
                 import subprocess
                 subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                time.sleep(2)  # Give processes time to close
                 logger.info("Killed existing Chrome processes")
             except Exception as e:
                 logger.warning(f"Failed to kill Chrome processes: {str(e)}")
             
             chrome_options = Options()
             
-            # Server-specific options
-            chrome_options.add_argument('--headless=new')  # New headless mode
+            # Essential options only
+            chrome_options.add_argument('--headless=new')
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--disable-dev-shm-usage')
             chrome_options.add_argument('--disable-gpu')
@@ -82,20 +83,24 @@ class SantanderScraper:
             if os.path.exists(chrome_data_dir):
                 try:
                     shutil.rmtree(chrome_data_dir, ignore_errors=True)
+                    time.sleep(1)  # Wait for cleanup
                 except Exception as e:
                     logger.warning(f"Failed to remove existing chrome data dir: {str(e)}")
             
             try:
                 os.makedirs(chrome_data_dir, exist_ok=True)
-                os.chmod(chrome_data_dir, 755)  # Ensure proper permissions
+                os.chmod(chrome_data_dir, 0o755)  # Use octal notation for permissions
                 logger.info(f"Created Chrome data directory: {chrome_data_dir}")
+                
+                # Ensure www-data owns the directory when running as service
+                subprocess.run(['chown', '-R', 'www-data:www-data', chrome_data_dir], check=False)
+                
             except Exception as e:
                 logger.warning(f"Could not create Chrome data directory: {str(e)}")
                 raise
             
             # Add user-data-dir to Chrome options
             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
-            chrome_options.add_argument('--profile-directory=Default')
             
             try:
                 # Use manually installed ChromeDriver
@@ -104,21 +109,56 @@ class SantanderScraper:
                     log_path='/var/log/extractor/chromedriver.log'
                 )
                 
-                driver = webdriver.Chrome(service=service, options=chrome_options)
-                logger.info("Chrome WebDriver initialized successfully")
+                # Initialize WebDriver with retry mechanism
+                max_retries = 3
+                retry_delay = 2
+                last_exception = None
                 
-                self.driver = driver
-                self._current_chrome_data_dir = chrome_data_dir
+                for attempt in range(max_retries):
+                    try:
+                        driver = webdriver.Chrome(service=service, options=chrome_options)
+                        logger.info(f"Chrome WebDriver initialized successfully on attempt {attempt + 1}")
+                        self.driver = driver
+                        self._current_chrome_data_dir = chrome_data_dir
+                        
+                        # Set page load timeout
+                        self.driver.set_page_load_timeout(30)
+                        
+                        # Add window size logging
+                        window_size = self.driver.get_window_size()
+                        logger.info(f"Browser window size: {window_size}")
+                        
+                        return  # Success, exit the retry loop
+                        
+                    except Exception as e:
+                        last_exception = e
+                        logger.warning(f"Attempt {attempt + 1} failed: {str(e)}")
+                        
+                        # Clean up failed attempt
+                        try:
+                            if hasattr(self, 'driver') and self.driver:
+                                self.driver.quit()
+                        except:
+                            pass
+                            
+                        try:
+                            shutil.rmtree(chrome_data_dir, ignore_errors=True)
+                        except:
+                            pass
+                            
+                        if attempt < max_retries - 1:  # Don't sleep on the last attempt
+                            time.sleep(retry_delay)
+                            # Create new directory for next attempt
+                            chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{pid}_{unique_id}_retry{attempt}")
+                            os.makedirs(chrome_data_dir, exist_ok=True)
+                            os.chmod(chrome_data_dir, 0o755)
+                            chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
                 
-                # Set page load timeout
-                self.driver.set_page_load_timeout(30)
-                
-                # Add window size logging
-                window_size = self.driver.get_window_size()
-                logger.info(f"Browser window size: {window_size}")
+                # If we get here, all attempts failed
+                raise last_exception
                 
             except Exception as e:
-                logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
+                logger.error(f"Failed to initialize Chrome WebDriver after all attempts: {str(e)}")
                 # Clean up the user data directory if initialization failed
                 try:
                     shutil.rmtree(chrome_data_dir, ignore_errors=True)

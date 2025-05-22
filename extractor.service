@@ -7,12 +7,18 @@ User=www-data
 Group=www-data
 WorkingDirectory=/var/www/extractor
 Environment="PATH=/var/www/extractor/venv/bin:/usr/local/bin:/usr/bin:/bin"
-Environment="PYTHONPATH=/var/www/extractor"
-Environment="FLASK_APP=run.py"
-Environment="FLASK_ENV=production"
-ExecStart=/var/www/extractor/venv/bin/python /var/www/extractor/venv/bin/gunicorn --config /var/www/extractor/gunicorn_config.py run:app
+ExecStartPre=/bin/bash -c 'pkill -f chrome || true'
+ExecStart=/var/www/extractor/venv/bin/gunicorn -c gunicorn_config.py run:app
+ExecStopPost=/bin/bash -c 'pkill -f chrome || true'
 Restart=always
-RestartSec=10
+TimeoutStartSec=60
+TimeoutStopSec=60
+KillMode=mixed
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+StandardOutput=append:/var/log/extractor/extractor.log
+StandardError=append:/var/log/extractor/extractor.error.log
 
 [Install]
 WantedBy=multi-user.target 
