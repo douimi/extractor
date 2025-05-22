@@ -47,58 +47,94 @@ class SantanderScraper:
     def setup_driver(self):
         """Initialize the Chrome WebDriver with appropriate options."""
         try:
+            # Clean up old Chrome user data directories
+            self._cleanup_old_chrome_data()
+            
             chrome_options = Options()
             
             # Server-specific options
-            chrome_options.add_argument('--headless')  # Must be headless on server
-            chrome_options.add_argument('--no-sandbox')  # Required for running as root/www-data
-            chrome_options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
-            chrome_options.add_argument('--disable-gpu')  # Disable GPU hardware acceleration
-            chrome_options.add_argument('--window-size=1920,1080')  # Set a standard window size
-            chrome_options.add_argument('--disable-extensions')  # Disable extensions
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-dev-shm-usage')
+            chrome_options.add_argument('--disable-gpu')
+            chrome_options.add_argument('--window-size=1920,1080')
+            chrome_options.add_argument('--disable-extensions')
             chrome_options.add_argument('--disable-setuid-sandbox')
             chrome_options.add_argument('--disable-web-security')
             chrome_options.add_argument('--dns-prefetch-disable')
-            
-            # Additional stability options for Linux
             chrome_options.add_argument('--remote-debugging-port=9222')
             chrome_options.add_argument('--disable-features=VizDisplayCompositor')
             chrome_options.add_argument('--disable-software-rasterizer')
             
+            # Additional options to prevent hanging
+            chrome_options.add_argument('--no-first-run')
+            chrome_options.add_argument('--no-default-browser-check')
+            chrome_options.add_argument('--disable-background-networking')
+            chrome_options.add_argument('--disable-sync')
+            chrome_options.add_argument('--disable-translate')
+            chrome_options.add_argument('--disable-background-timer-throttling')
+            chrome_options.add_argument('--disable-backgrounding-occluded-windows')
+            chrome_options.add_argument('--disable-client-side-phishing-detection')
+            chrome_options.add_argument('--disable-default-apps')
+            chrome_options.add_argument('--disable-prompt-on-repost')
+            
             # Create unique user data directory
             import uuid
+            import shutil
+            from datetime import datetime
             
             # Base directory for Chrome data
-            if os.name == 'posix':  # Linux/Unix systems
-                base_chrome_dir = "/var/lib/chrome_data"
-            else:  # Windows or other systems
-                base_chrome_dir = "/tmp/chrome_data"
+            base_chrome_dir = "/tmp/chrome_data" if not os.path.exists("/var/lib/chrome_data") else "/var/lib/chrome_data"
             
-            # Create unique subdirectory for this instance
+            # Create unique subdirectory with timestamp
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             unique_id = str(uuid.uuid4())[:8]
-            chrome_data_dir = os.path.join(base_chrome_dir, f"user_data_{unique_id}")
+            chrome_data_dir = os.path.join(base_chrome_dir, f"chrome_{timestamp}_{unique_id}")
             
             try:
                 os.makedirs(chrome_data_dir, exist_ok=True)
                 logger.info(f"Created Chrome data directory: {chrome_data_dir}")
             except Exception as e:
                 logger.warning(f"Could not create Chrome data directory: {str(e)}")
-                # Fallback to /tmp
-                chrome_data_dir = os.path.join("/tmp", f"chrome_user_data_{unique_id}")
+                # Fallback to /tmp with different name
+                chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{unique_id}")
                 os.makedirs(chrome_data_dir, exist_ok=True)
                 logger.info(f"Created fallback Chrome data directory: {chrome_data_dir}")
             
             # Add user-data-dir to Chrome options
             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
             
-            try:
-                # Try to initialize WebDriver with system ChromeDriver
-                service = Service(executable_path='/usr/bin/chromedriver')
-                self.driver = webdriver.Chrome(service=service, options=chrome_options)
-                logger.info("Chrome WebDriver initialized successfully")
-            except Exception as e:
-                logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
-                raise
+            # Try different ChromeDriver locations
+            chromedriver_locations = [
+                '/usr/local/bin/chromedriver',
+                '/usr/bin/chromedriver',
+                'chromedriver'
+            ]
+            
+            driver = None
+            last_error = None
+            
+            for driver_path in chromedriver_locations:
+                try:
+                    service = Service(executable_path=driver_path)
+                    driver = webdriver.Chrome(service=service, options=chrome_options)
+                    logger.info(f"Chrome WebDriver initialized successfully with {driver_path}")
+                    break
+                except Exception as e:
+                    last_error = e
+                    logger.warning(f"Failed to initialize Chrome WebDriver with {driver_path}: {str(e)}")
+                    # Clean up the user data directory if initialization failed
+                    try:
+                        shutil.rmtree(chrome_data_dir, ignore_errors=True)
+                    except:
+                        pass
+                    continue
+            
+            if driver is None:
+                raise Exception(f"Failed to initialize Chrome WebDriver with any available path. Last error: {str(last_error)}")
+            
+            self.driver = driver
+            self._current_chrome_data_dir = chrome_data_dir  # Store for cleanup
             
             # Set page load timeout
             self.driver.set_page_load_timeout(30)
@@ -110,6 +146,41 @@ class SantanderScraper:
         except Exception as e:
             logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
             raise
+
+    def _cleanup_old_chrome_data(self):
+        """Clean up old Chrome user data directories."""
+        try:
+            import shutil
+            from datetime import datetime, timedelta
+            
+            # Directories to check
+            chrome_dirs = ["/var/lib/chrome_data", "/tmp"]
+            
+            for base_dir in chrome_dirs:
+                if not os.path.exists(base_dir):
+                    continue
+                
+                # Get current time
+                now = datetime.now()
+                
+                # List all chrome data directories
+                for item in os.listdir(base_dir):
+                    item_path = os.path.join(base_dir, item)
+                    
+                    # Only process directories that match our pattern
+                    if os.path.isdir(item_path) and (item.startswith("chrome_") or item.startswith("user_data_")):
+                        try:
+                            # Get directory creation time
+                            ctime = datetime.fromtimestamp(os.path.getctime(item_path))
+                            
+                            # Remove if older than 1 hour
+                            if now - ctime > timedelta(hours=1):
+                                shutil.rmtree(item_path, ignore_errors=True)
+                                logger.info(f"Cleaned up old Chrome data directory: {item_path}")
+                        except Exception as e:
+                            logger.warning(f"Failed to clean up directory {item_path}: {str(e)}")
+        except Exception as e:
+            logger.warning(f"Error during Chrome data cleanup: {str(e)}")
 
     def handle_cookie_preferences(self):
         """Handle cookie preferences popup if it appears."""
@@ -602,9 +673,22 @@ class SantanderScraper:
         logger.info("Cache cleared")
 
     def close(self):
-        """Close the WebDriver and clear cache."""
+        """Close the WebDriver and clean up."""
         if self.driver:
-            self.driver.quit()
+            try:
+                self.driver.quit()
+            except Exception as e:
+                logger.warning(f"Error closing WebDriver: {str(e)}")
+            
+            # Clean up the current Chrome data directory
+            try:
+                if hasattr(self, '_current_chrome_data_dir') and os.path.exists(self._current_chrome_data_dir):
+                    import shutil
+                    shutil.rmtree(self._current_chrome_data_dir, ignore_errors=True)
+                    logger.info(f"Cleaned up Chrome data directory: {self._current_chrome_data_dir}")
+            except Exception as e:
+                logger.warning(f"Error cleaning up Chrome data directory: {str(e)}")
+        
         self.clear_cache()
 
     def format_country_url(self, country: str) -> str:
