@@ -98,18 +98,9 @@ class SantanderScraper:
             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
             
             try:
-                # Use webdriver-manager to handle ChromeDriver installation
-                from webdriver_manager.chrome import ChromeDriverManager
-                from selenium.webdriver.chrome.service import Service
-                
-                # Get the major version number for Chrome
-                chrome_version = "136"  # Major version only
-                driver_path = ChromeDriverManager().install()
-                logger.info(f"Using ChromeDriver path: {driver_path}")
-                
-                service = Service(executable_path=driver_path)
-                driver = webdriver.Chrome(service=service, options=chrome_options)
-                logger.info("Chrome WebDriver initialized successfully")
+                # Use selenium-manager directly instead of webdriver-manager
+                driver = webdriver.Chrome(options=chrome_options)
+                logger.info("Chrome WebDriver initialized successfully using selenium-manager")
                 
                 self.driver = driver
                 self._current_chrome_data_dir = chrome_data_dir
