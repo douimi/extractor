@@ -13,7 +13,7 @@ source venv/bin/activate
 
 # Update package list and install prerequisites
 sudo apt-get update
-sudo apt-get install -y wget curl gnupg2 apt-transport-https ca-certificates
+sudo apt-get install -y wget curl gnupg2 apt-transport-https ca-certificates unzip
 
 # Remove any existing Chrome repository configuration
 sudo rm -f /etc/apt/sources.list.d/google-chrome.list
@@ -37,8 +37,20 @@ if ! command -v google-chrome &> /dev/null; then
     rm google-chrome-stable_current_amd64.deb
 fi
 
-# Verify Chrome is installed and get version
-google-chrome --version || echo "Chrome installation failed"
+# Get Chrome version and download matching ChromeDriver
+CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | awk -F'.' '{print $1}')
+echo "Chrome version: $CHROME_VERSION"
+
+# Download and install ChromeDriver
+wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROME_VERSION.0.7103.0/linux64/chromedriver-linux64.zip"
+unzip -o chromedriver-linux64.zip
+sudo mv chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+sudo chown root:root /usr/local/bin/chromedriver
+sudo chmod +x /usr/local/bin/chromedriver
+rm -rf chromedriver-linux64.zip chromedriver-linux64
+
+# Verify ChromeDriver installation
+chromedriver --version
 
 # Install Python dependencies
 pip install -r requirements.txt

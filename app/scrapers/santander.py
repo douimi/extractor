@@ -98,9 +98,10 @@ class SantanderScraper:
             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
             
             try:
-                # Use selenium-manager directly instead of webdriver-manager
-                driver = webdriver.Chrome(options=chrome_options)
-                logger.info("Chrome WebDriver initialized successfully using selenium-manager")
+                # Use manually installed ChromeDriver
+                service = Service(executable_path='/usr/local/bin/chromedriver')
+                driver = webdriver.Chrome(service=service, options=chrome_options)
+                logger.info("Chrome WebDriver initialized successfully")
                 
                 self.driver = driver
                 self._current_chrome_data_dir = chrome_data_dir
