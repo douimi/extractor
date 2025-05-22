@@ -1,3 +1,24 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# User-specific directories
 chrome/
 chromedriver/
+chrome_data/
+flask_session/
+logs/
+
+# Virtual environment
 venv/
+env/
+
+# Environment variables
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo

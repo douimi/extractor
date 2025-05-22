@@ -48,78 +48,57 @@ class SantanderScraper:
         """Initialize the Chrome WebDriver with appropriate options."""
         try:
             chrome_options = Options()
-            if self.headless:
-                chrome_options.add_argument("--headless=new")
-                logger.info("Headless mode is enabled")
             
-            # Add robust cross-platform options
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument("--disable-dev-shm-usage")
-            chrome_options.add_argument("--disable-gpu")
-            chrome_options.add_argument("--window-size=1920,1080")
-            chrome_options.add_argument("--disable-extensions")
-            chrome_options.add_argument("--disable-setuid-sandbox")
-            chrome_options.add_argument("--disable-web-security")
+            # Server-specific options
+            chrome_options.add_argument('--headless')  # Must be headless on server
+            chrome_options.add_argument('--no-sandbox')  # Required for running as root/www-data
+            chrome_options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+            chrome_options.add_argument('--disable-gpu')  # Disable GPU hardware acceleration
+            chrome_options.add_argument('--window-size=1920,1080')  # Set a standard window size
+            chrome_options.add_argument('--disable-extensions')  # Disable extensions
+            chrome_options.add_argument('--disable-setuid-sandbox')
+            chrome_options.add_argument('--disable-web-security')
+            chrome_options.add_argument('--dns-prefetch-disable')
             
-            # Add logging preferences
-            chrome_options.add_argument("--enable-logging")
-            chrome_options.add_argument("--v=1")
+            # Additional stability options for Linux
+            chrome_options.add_argument('--remote-debugging-port=9222')
+            chrome_options.add_argument('--disable-features=VizDisplayCompositor')
+            chrome_options.add_argument('--disable-software-rasterizer')
             
-            # Increase timeouts and stability
-            chrome_options.add_argument("--dns-prefetch-disable")
-            chrome_options.add_argument("--disable-features=VizDisplayCompositor")
-            
-            # Créer un répertoire de données utilisateur unique
+            # Create unique user data directory
             import uuid
             
-            # Créer le chemin de base pour les données Chrome
-            chrome_data_dir = "/var/www/extractor/chrome_data"
+            # Base directory for Chrome data
+            if os.name == 'posix':  # Linux/Unix systems
+                base_chrome_dir = "/var/lib/chrome_data"
+            else:  # Windows or other systems
+                base_chrome_dir = "/tmp/chrome_data"
+            
+            # Create unique subdirectory for this instance
+            unique_id = str(uuid.uuid4())[:8]
+            chrome_data_dir = os.path.join(base_chrome_dir, f"user_data_{unique_id}")
+            
             try:
-                if not os.path.exists(chrome_data_dir):
-                    os.makedirs(chrome_data_dir, exist_ok=True)
+                os.makedirs(chrome_data_dir, exist_ok=True)
+                logger.info(f"Created Chrome data directory: {chrome_data_dir}")
             except Exception as e:
-                logger.warning(f"Could not create chrome_data directory: {str(e)}")
-                # Utiliser /tmp comme fallback
-                chrome_data_dir = "/tmp"
+                logger.warning(f"Could not create Chrome data directory: {str(e)}")
+                # Fallback to /tmp
+                chrome_data_dir = os.path.join("/tmp", f"chrome_user_data_{unique_id}")
+                os.makedirs(chrome_data_dir, exist_ok=True)
+                logger.info(f"Created fallback Chrome data directory: {chrome_data_dir}")
             
-            # Créer un sous-répertoire unique avec UUID
-            unique_id = str(uuid.uuid4())[:8]  # Utiliser les 8 premiers caractères pour raccourcir le chemin
-            user_data_dir = os.path.join(chrome_data_dir, f"user_data_{unique_id}")
-            
-            try:
-                os.makedirs(user_data_dir, exist_ok=True)
-                logger.info(f"Created unique user data directory: {user_data_dir}")
-            except Exception as e:
-                logger.warning(f"Could not create user data directory: {str(e)}")
-                # Fallback vers le répertoire temporaire
-                user_data_dir = os.path.join("/tmp", f"chrome_user_data_{unique_id}")
-                os.makedirs(user_data_dir, exist_ok=True)
-                logger.info(f"Created fallback user data directory: {user_data_dir}")
-            
-            # Ajouter l'option user-data-dir à Chrome
-            chrome_options.add_argument(f"--user-data-dir={user_data_dir}")
+            # Add user-data-dir to Chrome options
+            chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
             
             try:
-                # Essayer d'initialiser le WebDriver sans ChromeDriverManager
-                self.driver = webdriver.Chrome(options=chrome_options)
+                # Try to initialize WebDriver with system ChromeDriver
+                service = Service(executable_path='/usr/bin/chromedriver')
+                self.driver = webdriver.Chrome(service=service, options=chrome_options)
                 logger.info("Chrome WebDriver initialized successfully")
-            except Exception as chrome_error:
-                logger.warning(f"Failed to initialize Chrome WebDriver: {str(chrome_error)}")
-                logger.info("Attempting fallback to system ChromeDriver")
-                
-                # Fallback to system ChromeDriver
-                try:
-                    if os.name == 'posix':  # Linux/Unix
-                        chromedriver_path = "/usr/bin/chromedriver"
-                    else:  # Windows
-                        chromedriver_path = "/usr/bin/chromedriver"
-                    
-                    service = Service(executable_path=chromedriver_path)
-                    self.driver = webdriver.Chrome(service=service, options=chrome_options)
-                    logger.info("Chrome WebDriver initialized successfully with system ChromeDriver")
-                except Exception as fallback_error:
-                    logger.error(f"Fallback to system ChromeDriver failed: {str(fallback_error)}")
-                    raise
+            except Exception as e:
+                logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
+                raise
             
             # Set page load timeout
             self.driver.set_page_load_timeout(30)
@@ -131,6 +110,27 @@ class SantanderScraper:
         except Exception as e:
             logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
             raise
+
+    def handle_cookie_preferences(self):
+        """Handle cookie preferences popup if it appears."""
+        try:
+            # Wait for cookie banner to appear (up to 5 seconds)
+            cookie_banner = WebDriverWait(self.driver, 5).until(
+                EC.presence_of_element_located((By.ID, "tarteaucitronRoot"))
+            )
+            
+            # Look for the "Accept all" button
+            accept_button = self.driver.find_element(By.ID, "tarteaucitronAllDenied2")
+            if accept_button:
+                accept_button.click()
+                logger.info("Cookie preferences handled successfully")
+                time.sleep(1)  # Wait for banner to disappear
+        except TimeoutException:
+            logger.info("No cookie banner found - continuing")
+        except Exception as e:
+            logger.warning(f"Error handling cookie preferences: {str(e)}")
+            # Continue even if there's an error - the cookie banner might not be present
+            pass
 
     def login(self, email, password):
         """Login to Santander Trade Portal."""
@@ -605,4 +605,8 @@ class SantanderScraper:
         """Close the WebDriver and clear cache."""
         if self.driver:
             self.driver.quit()
-        self.clear_cache() 
+        self.clear_cache()
+
+    def format_country_url(self, country: str) -> str:
+        """Format a country code as a URL."""
+        return self.COUNTRY_URL_MAPPING.get(country, country.lower()) 

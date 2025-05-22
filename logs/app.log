@@ -2326,3 +2326,235 @@ Stacktrace:
 #16 0x557c2ef745c6 <unknown>
 #17 0x7fb8ef3081f5 <unknown>
 
+2025-05-22 11:14:35,597 - app - INFO - Extractor startup
+2025-05-22 11:14:37,934 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:14:38,477 - app - INFO - Extractor startup
+2025-05-22 11:14:40,043 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:14:40,054 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:14:40,189 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:14:40,190 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:14:45,077 - werkzeug - INFO - 192.168.1.100 - - [22/May/2025 11:14:45] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-22 11:14:45,132 - werkzeug - INFO - 192.168.1.100 - - [22/May/2025 11:14:45] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-22 11:14:47,223 - werkzeug - INFO - 192.168.1.100 - - [22/May/2025 11:14:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-22 11:15:08,546 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:15:08] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-22 11:15:08,882 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:15:08] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-22 11:15:14,447 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:15:14] "POST /auth/login HTTP/1.1" 200 -
+2025-05-22 11:15:21,058 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:15:21] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2025-05-22 11:15:21,083 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:15:21] "GET / HTTP/1.1" 200 -
+2025-05-22 11:15:32,484 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-22 11:15:32,501 - app.scrapers.santander - INFO - Created unique user data directory: /var/www/extractor/chrome_data\user_data_33d1f8f8
+2025-05-22 11:16:30,203 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-22 11:16:30,326 - app.scrapers.santander - INFO - Browser window size: {'width': 1555, 'height': 883}
+2025-05-22 11:16:35,893 - app.scrapers.santander - ERROR - Login failed: 'SantanderScraper' object has no attribute 'handle_cookie_preferences'
+2025-05-22 11:16:35,897 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:16:35] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-22 11:18:47,037 - app - INFO - Extractor startup
+2025-05-22 11:18:48,518 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:18:49,012 - app - INFO - Extractor startup
+2025-05-22 11:18:50,195 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:18:50,195 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:18:50,319 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:18:50,319 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:18:54,548 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:18:54] "[32mPOST /api/initialize-report HTTP/1.1[0m" 302 -
+2025-05-22 11:18:54,844 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:18:54] "GET /auth/login?next=%2Fapi%2Finitialize-report HTTP/1.1" 200 -
+2025-05-22 11:19:00,410 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:19:00] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-22 11:19:00,695 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:19:00] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-22 11:19:02,362 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:19:02] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2025-05-22 11:19:02,387 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:19:02] "GET / HTTP/1.1" 200 -
+2025-05-22 11:19:10,259 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-22 11:19:10,259 - app.scrapers.santander - INFO - Created unique user data directory: /var/www/extractor/chrome_data\user_data_54e41a64
+2025-05-22 11:19:12,573 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-22 11:19:12,731 - app.scrapers.santander - INFO - Browser window size: {'width': 1555, 'height': 883}
+2025-05-22 11:19:20,273 - app.scrapers.santander - ERROR - Login failed: 'SantanderScraper' object has no attribute 'handle_cookie_preferences'
+2025-05-22 11:19:20,289 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:19:20] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-22 11:20:11,381 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 11:20:11,540 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:20:12,037 - app - INFO - Extractor startup
+2025-05-22 11:20:13,280 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:20:13,280 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:20:13,413 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:20:13,415 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:20:14,581 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 11:20:14,744 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:20:15,230 - app - INFO - Extractor startup
+2025-05-22 11:20:16,446 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:20:16,462 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:20:16,563 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:20:16,563 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:20:39,057 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 11:20:39,226 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:20:39,658 - app - INFO - Extractor startup
+2025-05-22 11:20:40,891 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:20:40,891 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:20:41,010 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:20:41,012 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:20:45,557 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 11:20:45,714 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:20:46,207 - app - INFO - Extractor startup
+2025-05-22 11:20:47,776 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:20:47,790 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:20:47,904 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:20:47,907 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:20:48,875 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:20:48] "GET / HTTP/1.1" 200 -
+2025-05-22 11:20:56,539 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-22 11:20:56,546 - app.scrapers.santander - INFO - Created unique user data directory: /var/www/extractor/chrome_data\user_data_3ef10e65
+2025-05-22 11:20:58,609 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-22 11:20:58,709 - app.scrapers.santander - INFO - Browser window size: {'width': 1555, 'height': 883}
+2025-05-22 11:21:09,085 - app.scrapers.santander - INFO - No cookie banner found - continuing
+2025-05-22 11:21:12,292 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:21:12] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-22 11:21:13,204 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/canada/general-presentation
+2025-05-22 11:21:40,163 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:21:40,179 - app.services.openai_service - INFO - Generated introduction for general_info section for CA
+2025-05-22 11:21:45,195 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:21:45,212 - app.services.openai_service - INFO - Generated insights for general_info section for CA
+2025-05-22 11:21:45,228 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:21:45] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 11:21:46,128 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/canada/economic-political-outline
+2025-05-22 11:21:52,277 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-22 11:22:01,626 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:22:01,626 - app.services.openai_service - INFO - Generated introduction for economic_data section for CA
+2025-05-22 11:22:07,849 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:22:07,861 - app.services.openai_service - INFO - Generated insights for economic_data section for CA
+2025-05-22 11:22:07,876 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:22:07] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 11:22:08,575 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/canada/foreign-trade-in-figures
+2025-05-22 11:22:21,045 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-22 11:22:21,045 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-22 11:22:21,064 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:22:22,214 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-22 11:22:22,754 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 11:22:22,921 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:22:23,421 - app - INFO - Extractor startup
+2025-05-22 11:22:24,753 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:22:24,770 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:22:24,889 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:22:24,889 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:22:25,637 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:22:25] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 11:22:35,942 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 11:22:36,112 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:22:36,736 - app - INFO - Extractor startup
+2025-05-22 11:22:38,039 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:22:38,039 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:22:38,158 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:22:38,159 - werkzeug - INFO -  * Running on http://192.168.1.100:5000/ (Press CTRL+C to quit)
+2025-05-22 11:23:22,499 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:23:22] "GET / HTTP/1.1" 200 -
+2025-05-22 11:23:28,241 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-22 11:23:28,249 - app.scrapers.santander - INFO - Created Chrome data directory: /tmp/chrome_data\user_data_5ece4e97
+2025-05-22 11:23:30,551 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-22 11:23:30,706 - app.scrapers.santander - INFO - Browser window size: {'width': 1555, 'height': 883}
+2025-05-22 11:24:00,730 - app.scrapers.santander - ERROR - Login failed: Message: timeout: Timed out receiving message from renderer: 27.881
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF77FE4CF45+75717]
+	GetHandleVerifier [0x00007FF77FE4CFA0+75808]
+	(No symbol) [0x00007FF77FC18F9A]
+	(No symbol) [0x00007FF77FC064EC]
+	(No symbol) [0x00007FF77FC061DA]
+	(No symbol) [0x00007FF77FC03E8A]
+	(No symbol) [0x00007FF77FC0483F]
+	(No symbol) [0x00007FF77FC133AE]
+	(No symbol) [0x00007FF77FC297E1]
+	(No symbol) [0x00007FF77FC3091A]
+	(No symbol) [0x00007FF77FC04FAD]
+	(No symbol) [0x00007FF77FC294D0]
+	(No symbol) [0x00007FF77FCBF732]
+	(No symbol) [0x00007FF77FC97153]
+	(No symbol) [0x00007FF77FC60421]
+	(No symbol) [0x00007FF77FC611B3]
+	GetHandleVerifier [0x00007FF78014D71D+3223453]
+	GetHandleVerifier [0x00007FF780147CC2+3200322]
+	GetHandleVerifier [0x00007FF780165AF3+3322739]
+	GetHandleVerifier [0x00007FF77FE66A1A+180890]
+	GetHandleVerifier [0x00007FF77FE6E11F+211359]
+	GetHandleVerifier [0x00007FF77FE55294+109332]
+	GetHandleVerifier [0x00007FF77FE55442+109762]
+	GetHandleVerifier [0x00007FF77FE3BA59+4825]
+	BaseThreadInitThunk [0x00007FFBA4C57374+20]
+	RtlUserThreadStart [0x00007FFBA68DCC91+33]
+
+2025-05-22 11:24:00,756 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:24:00] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-22 11:24:10,066 - app.scrapers.santander - INFO - Headless mode is enabled
+2025-05-22 11:24:10,066 - app.scrapers.santander - INFO - Created Chrome data directory: /tmp/chrome_data\user_data_5418d3c1
+2025-05-22 11:24:12,447 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully
+2025-05-22 11:24:12,681 - app.scrapers.santander - INFO - Browser window size: {'width': 1555, 'height': 883}
+2025-05-22 11:24:14,700 - app.scrapers.santander - INFO - Cache cleared
+2025-05-22 11:24:27,072 - app.scrapers.santander - INFO - No cookie banner found - continuing
+2025-05-22 11:24:30,300 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:24:30] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-22 11:24:31,024 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/canada/general-presentation
+2025-05-22 11:24:41,844 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:24:41,860 - app.services.openai_service - INFO - Generated introduction for general_info section for CA
+2025-05-22 11:24:46,749 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:24:46,749 - app.services.openai_service - INFO - Generated insights for general_info section for CA
+2025-05-22 11:24:46,768 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:24:46] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 11:24:47,626 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/canada/economic-political-outline
+2025-05-22 11:24:54,113 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-22 11:25:02,912 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:25:02,917 - app.services.openai_service - INFO - Generated introduction for economic_data section for CA
+2025-05-22 11:25:08,255 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:25:08,255 - app.services.openai_service - INFO - Generated insights for economic_data section for CA
+2025-05-22 11:25:08,275 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:25:08] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 11:25:08,888 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/canada/foreign-trade-in-figures
+2025-05-22 11:25:16,644 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-22 11:25:16,645 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-22 11:25:16,676 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:25:17,753 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-22 11:25:22,022 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-22 11:25:22,620 - app.scrapers.santander - INFO - Extracted 4 rows of data
+2025-05-22 11:25:22,620 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-22 11:25:22,621 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-22 11:25:22,643 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:25:23,752 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-22 11:25:27,984 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-22 11:25:28,968 - app.scrapers.santander - INFO - Extracted 7 rows of data
+2025-05-22 11:25:28,968 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-22 11:25:28,984 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-22 11:25:28,985 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:25:30,039 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-22 11:25:34,249 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-22 11:25:35,233 - app.scrapers.santander - INFO - Extracted 7 rows of data
+2025-05-22 11:25:35,233 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-22 11:25:35,233 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-22 11:25:35,251 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:25:36,333 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-22 11:25:40,499 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-22 11:25:41,498 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 11:25:41,498 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-22 11:25:41,498 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-22 11:25:41,515 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:25:42,565 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-22 11:25:46,731 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-22 11:25:47,781 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 11:25:47,781 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-22 11:25:47,781 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-22 11:25:47,798 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:25:48,847 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-22 11:25:53,063 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-22 11:25:54,334 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 11:25:54,335 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-22 11:25:54,336 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-22 11:25:54,347 - app.scrapers.santander - INFO - Table found
+2025-05-22 11:25:55,394 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-22 11:25:59,562 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-22 11:26:00,605 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 11:26:08,527 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:26:08,543 - app.services.openai_service - INFO - Generated introduction for international_business section for CA
+2025-05-22 11:26:14,276 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 11:26:14,276 - app.services.openai_service - INFO - Generated insights for international_business section for CA
+2025-05-22 11:26:16,558 - app.scrapers.santander - INFO - Cache cleared
+2025-05-22 11:26:20,641 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:26:20] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 11:26:20,988 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-22 11:26:20,989 - app.routes.routes - INFO - Report data copied. Origin: CA, Destination: CA
+2025-05-22 11:26:21,010 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:26:21] "GET /report HTTP/1.1" 200 -
