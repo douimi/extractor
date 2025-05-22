@@ -1,10 +1,10 @@
 {
     "admin": {
-        "password": "admin123",
+        "password": "pbkdf2:sha256:260000$VPLtfVhYCnWNjiwc$827344b41103cf71357fd30465ed0c1dffc03110a74cb401d879d9c11fbb689f",
         "role": "admin"
     },
     "user": {
-        "password": "user123",
+        "password": "pbkdf2:sha256:260000$IcqhLYrfoWz0UwAr$8cd9a4ed979be4e8839415c5ba2f511f6cd4a05a29e86265894f0f67a4002a4e",
         "role": "user"
     }
-} 
+}
