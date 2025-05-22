@@ -87,7 +87,7 @@ class SantanderScraper:
             
             try:
                 os.makedirs(chrome_data_dir, exist_ok=True)
-                os.chmod(chrome_data_dir, 0o755)  # Ensure proper permissions
+                os.chmod(chrome_data_dir, 755)  # Ensure proper permissions
                 logger.info(f"Created Chrome data directory: {chrome_data_dir}")
             except Exception as e:
                 logger.warning(f"Could not create Chrome data directory: {str(e)}")
