@@ -2558,3 +2558,117 @@ Extracting Main Services Imported...
 2025-05-22 11:26:20,988 - app.routes.routes - INFO - Viewing report. Session data exists: True
 2025-05-22 11:26:20,989 - app.routes.routes - INFO - Report data copied. Origin: CA, Destination: CA
 2025-05-22 11:26:21,010 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:26:21] "GET /report HTTP/1.1" 200 -
+2025-05-22 11:59:24,353 - app - INFO - Extractor startup
+2025-05-22 11:59:25,811 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 11:59:26,285 - app - INFO - Extractor startup
+2025-05-22 11:59:27,576 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 11:59:27,589 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 11:59:27,723 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 11:59:27,725 - werkzeug - INFO -  * Running on http://172.20.10.11:5000/ (Press CTRL+C to quit)
+2025-05-22 11:59:42,463 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:59:42] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-22 11:59:42,796 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:59:42] "GET /auth/login?next=%2F HTTP/1.1" 200 -
+2025-05-22 11:59:44,869 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:59:44] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2025-05-22 11:59:44,904 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:59:44] "GET / HTTP/1.1" 200 -
+2025-05-22 11:59:52,115 - app.scrapers.santander - INFO - Created Chrome data directory: /tmp/chrome_data\chrome_20250522_115952_004e840b
+2025-05-22 11:59:52,115 - app.scrapers.santander - WARNING - Failed to initialize Chrome WebDriver with /usr/local/bin/chromedriver: Message: Unable to locate or obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2025-05-22 11:59:52,131 - app.scrapers.santander - WARNING - Failed to initialize Chrome WebDriver with /usr/bin/chromedriver: Message: Unable to locate or obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2025-05-22 11:59:52,137 - app.scrapers.santander - WARNING - Failed to initialize Chrome WebDriver with chromedriver: Message: Unable to locate or obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2025-05-22 11:59:52,140 - app.scrapers.santander - ERROR - Failed to initialize Chrome WebDriver: Failed to initialize Chrome WebDriver with any available path. Last error: Message: Unable to locate or obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2025-05-22 11:59:52,141 - app.services.report_service - ERROR - Failed to initialize scrapers: Failed to initialize Chrome WebDriver with any available path. Last error: Message: Unable to locate or obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2025-05-22 11:59:52,149 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 11:59:52] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-22 12:00:42,325 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 12:00:42,472 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 12:00:42,956 - app - INFO - Extractor startup
+2025-05-22 12:00:44,271 - werkzeug - WARNING -  * Debugger is active!
+2025-05-22 12:00:44,286 - werkzeug - INFO -  * Debugger PIN: 687-626-296
+2025-05-22 12:00:44,422 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-05-22 12:00:44,422 - werkzeug - INFO -  * Running on http://172.20.10.11:5000/ (Press CTRL+C to quit)
+2025-05-22 12:00:50,420 - app.scrapers.santander - INFO - Created Chrome data directory: /tmp/chrome_data\chrome_20250522_120050_2b421e28
+2025-05-22 12:00:52,827 - app.scrapers.santander - INFO - Chrome WebDriver initialized successfully with /usr/local/bin/chromedriver
+2025-05-22 12:00:52,909 - app.scrapers.santander - INFO - Browser window size: {'width': 1920, 'height': 1080}
+2025-05-22 12:01:00,885 - app.scrapers.santander - INFO - No cookie banner found - continuing
+2025-05-22 12:01:04,098 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 12:01:04] "POST /api/initialize-report HTTP/1.1" 200 -
+2025-05-22 12:01:04,912 - app.scrapers.santander - INFO - Accessing general info URL: https://santandertrade.com/en/portal/analyse-markets/canada/general-presentation
+2025-05-22 12:01:19,164 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 12:01:19,181 - app.services.openai_service - INFO - Generated introduction for general_info section for CA
+2025-05-22 12:01:23,513 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 12:01:23,513 - app.services.openai_service - INFO - Generated insights for general_info section for CA
+2025-05-22 12:01:23,513 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 12:01:23] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 12:01:24,565 - app.scrapers.santander - INFO - Accessing economic data URL: https://santandertrade.com/en/portal/analyse-markets/canada/economic-political-outline
+2025-05-22 12:01:31,279 - app.scrapers.santander - WARNING - Element not found for XPath: //table//th[contains(text(), 'GDP') and contains(text(), 'Constant Prices, Annual % Change')]/following-sibling::td[1]
+2025-05-22 12:01:40,926 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 12:01:40,926 - app.services.openai_service - INFO - Generated introduction for economic_data section for CA
+2025-05-22 12:01:46,042 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 12:01:46,063 - app.services.openai_service - INFO - Generated insights for economic_data section for CA
+2025-05-22 12:01:46,079 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 12:01:46] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 12:01:46,792 - app.scrapers.santander - INFO - Accessing international business URL: https://santandertrade.com/en/portal/analyse-markets/canada/foreign-trade-in-figures
+2025-05-22 12:01:54,536 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Values...
+2025-05-22 12:01:54,536 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[2]/div[1]/table
+2025-05-22 12:01:54,585 - app.scrapers.santander - INFO - Table found
+2025-05-22 12:01:55,658 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_export_lien
+2025-05-22 12:01:59,989 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Values', '2019', '2020', '2021', '2022', '2023']
+2025-05-22 12:02:00,873 - app.scrapers.santander - INFO - Extracted 4 rows of data
+2025-05-22 12:02:00,873 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Indicators...
+2025-05-22 12:02:00,873 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-22 12:02:00,915 - app.scrapers.santander - INFO - Table found
+2025-05-22 12:02:02,007 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_pays_import_lien
+2025-05-22 12:02:06,322 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-22 12:02:07,830 - app.scrapers.santander - INFO - Extracted 7 rows of data
+2025-05-22 12:02:07,831 - app.scrapers.santander - INFO - 
+Extracting Foreign Trade Forecasts...
+2025-05-22 12:02:07,831 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="encart-theme-atlas"]/div[1]/div/div[3]/div[1]/table
+2025-05-22 12:02:07,846 - app.scrapers.santander - INFO - Table found
+2025-05-22 12:02:08,905 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-22 12:02:13,237 - app.scrapers.santander - INFO - Found headers: ['Foreign Trade Indicators', '2019', '2020', '2021', '2022', '2023']
+2025-05-22 12:02:14,636 - app.scrapers.santander - INFO - Extracted 7 rows of data
+2025-05-22 12:02:14,636 - app.scrapers.santander - INFO - 
+Extracting Main Customers...
+2025-05-22 12:02:14,636 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-22 12:02:14,671 - app.scrapers.santander - INFO - Table found
+2025-05-22 12:02:15,753 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-22 12:02:19,985 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-22 12:02:21,019 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 12:02:21,019 - app.scrapers.santander - INFO - 
+Extracting Main Suppliers...
+2025-05-22 12:02:21,034 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-22 12:02:21,036 - app.scrapers.santander - INFO - Table found
+2025-05-22 12:02:22,085 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-22 12:02:26,317 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-22 12:02:27,523 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 12:02:27,523 - app.scrapers.santander - INFO - 
+Extracting Main Services Exported...
+2025-05-22 12:02:27,535 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[1]
+2025-05-22 12:02:27,552 - app.scrapers.santander - INFO - Table found
+2025-05-22 12:02:28,647 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_export_lien
+2025-05-22 12:02:32,818 - app.scrapers.santander - INFO - Found headers: ['Main Customers\n(% of Exports)', '2023']
+2025-05-22 12:02:33,916 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 12:02:33,916 - app.scrapers.santander - INFO - 
+Extracting Main Services Imported...
+2025-05-22 12:02:33,916 - app.scrapers.santander - INFO - Looking for table with XPath: //*[@id="doubletableau"]/table[2]
+2025-05-22 12:02:33,916 - app.scrapers.santander - INFO - Table found
+2025-05-22 12:02:34,978 - app.scrapers.santander - INFO - Clicking 'See More' link: atlas_import_lien
+2025-05-22 12:02:39,165 - app.scrapers.santander - INFO - Found headers: ['Main Suppliers\n(% of Imports)', '2023']
+2025-05-22 12:02:40,249 - app.scrapers.santander - INFO - Extracted 10 rows of data
+2025-05-22 12:02:49,680 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 12:02:49,697 - app.services.openai_service - INFO - Generated introduction for international_business section for CA
+2025-05-22 12:02:55,929 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-22 12:02:55,929 - app.services.openai_service - INFO - Generated insights for international_business section for CA
+2025-05-22 12:02:58,218 - app.scrapers.santander - INFO - Cleaned up Chrome data directory: /tmp/chrome_data\chrome_20250522_120050_2b421e28
+2025-05-22 12:02:58,218 - app.scrapers.santander - INFO - Cache cleared
+2025-05-22 12:03:02,267 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 12:03:02] "POST /api/generate-section HTTP/1.1" 200 -
+2025-05-22 12:03:02,627 - app.routes.routes - INFO - Viewing report. Session data exists: True
+2025-05-22 12:03:02,627 - app.routes.routes - INFO - Report data copied. Origin: GB, Destination: CA
+2025-05-22 12:03:02,674 - werkzeug - INFO - 127.0.0.1 - - [22/May/2025 12:03:02] "GET /report HTTP/1.1" 200 -
+2025-05-22 12:04:38,026 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Otmane\\Desktop\\extractor\\app\\scrapers\\santander.py', reloading
+2025-05-22 12:04:38,184 - werkzeug - INFO -  * Restarting with stat
+2025-05-22 12:04:38,756 - app - INFO - Extractor startup
+2025-05-22 12:04:39,526 - app - INFO - Extractor startup

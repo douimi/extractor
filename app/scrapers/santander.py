@@ -104,34 +104,43 @@ class SantanderScraper:
             # Add user-data-dir to Chrome options
             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
             
-            # Try different ChromeDriver locations
-            chromedriver_locations = [
-                '/usr/local/bin/chromedriver',
-                '/usr/bin/chromedriver',
-                'chromedriver'
-            ]
-            
             driver = None
             last_error = None
             
-            for driver_path in chromedriver_locations:
-                try:
-                    service = Service(executable_path=driver_path)
-                    driver = webdriver.Chrome(service=service, options=chrome_options)
-                    logger.info(f"Chrome WebDriver initialized successfully with {driver_path}")
-                    break
-                except Exception as e:
-                    last_error = e
-                    logger.warning(f"Failed to initialize Chrome WebDriver with {driver_path}: {str(e)}")
-                    # Clean up the user data directory if initialization failed
+            # Try automatic ChromeDriver detection first
+            try:
+                driver = webdriver.Chrome(options=chrome_options)
+                logger.info("Chrome WebDriver initialized successfully with automatic detection")
+            except Exception as auto_error:
+                logger.warning(f"Automatic ChromeDriver detection failed: {str(auto_error)}")
+                last_error = auto_error
+                
+                # If automatic detection fails, try explicit paths
+                chromedriver_locations = [
+                    '/usr/local/bin/chromedriver',
+                    '/usr/bin/chromedriver',
+                    'chromedriver'
+                ]
+                
+                for driver_path in chromedriver_locations:
+                    if driver is not None:
+                        break
+                        
                     try:
-                        shutil.rmtree(chrome_data_dir, ignore_errors=True)
-                    except:
-                        pass
-                    continue
+                        service = Service(executable_path=driver_path)
+                        driver = webdriver.Chrome(service=service, options=chrome_options)
+                        logger.info(f"Chrome WebDriver initialized successfully with {driver_path}")
+                    except Exception as e:
+                        last_error = e
+                        logger.warning(f"Failed to initialize Chrome WebDriver with {driver_path}: {str(e)}")
+                        # Clean up the user data directory if initialization failed
+                        try:
+                            shutil.rmtree(chrome_data_dir, ignore_errors=True)
+                        except:
+                            pass
             
             if driver is None:
-                raise Exception(f"Failed to initialize Chrome WebDriver with any available path. Last error: {str(last_error)}")
+                raise Exception(f"Failed to initialize Chrome WebDriver. Last error: {str(last_error)}")
             
             self.driver = driver
             self._current_chrome_data_dir = chrome_data_dir  # Store for cleanup
