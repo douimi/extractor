@@ -53,6 +53,14 @@ class SantanderScraper:
             # Clean up old Chrome user data directories
             self._cleanup_old_chrome_data()
             
+            # Kill any existing Chrome processes
+            try:
+                import subprocess
+                subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                logger.info("Killed existing Chrome processes")
+            except Exception as e:
+                logger.warning(f"Failed to kill Chrome processes: {str(e)}")
+            
             chrome_options = Options()
             
             # Server-specific options
@@ -82,13 +90,22 @@ class SantanderScraper:
             # Set binary location explicitly
             chrome_options.binary_location = '/usr/bin/google-chrome'
             
-            # Create unique user data directory
+            # Create unique user data directory with timestamp and process ID
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            pid = os.getpid()
             unique_id = str(uuid.uuid4())[:8]
-            chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{unique_id}")
+            chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{pid}_{unique_id}")
+            
+            # Clean up the directory if it exists
+            if os.path.exists(chrome_data_dir):
+                try:
+                    shutil.rmtree(chrome_data_dir, ignore_errors=True)
+                except Exception as e:
+                    logger.warning(f"Failed to remove existing chrome data dir: {str(e)}")
             
             try:
                 os.makedirs(chrome_data_dir, exist_ok=True)
+                os.chmod(chrome_data_dir, 0o755)  # Ensure proper permissions
                 logger.info(f"Created Chrome data directory: {chrome_data_dir}")
             except Exception as e:
                 logger.warning(f"Could not create Chrome data directory: {str(e)}")
@@ -96,10 +113,15 @@ class SantanderScraper:
             
             # Add user-data-dir to Chrome options
             chrome_options.add_argument(f'--user-data-dir={chrome_data_dir}')
+            chrome_options.add_argument('--profile-directory=Default')
             
             try:
                 # Use manually installed ChromeDriver
-                service = Service(executable_path='/usr/local/bin/chromedriver')
+                service = Service(
+                    executable_path='/usr/local/bin/chromedriver',
+                    log_path='/var/log/extractor/chromedriver.log'
+                )
+                
                 driver = webdriver.Chrome(service=service, options=chrome_options)
                 logger.info("Chrome WebDriver initialized successfully")
                 
@@ -129,8 +151,16 @@ class SantanderScraper:
     def _cleanup_old_chrome_data(self):
         """Clean up old Chrome user data directories."""
         try:
+            # Kill any existing Chrome processes first
+            try:
+                import subprocess
+                subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                time.sleep(1)  # Give processes time to close
+            except Exception as e:
+                logger.warning(f"Failed to kill Chrome processes: {str(e)}")
+            
             # Directories to check
-            chrome_dirs = ["/var/lib/chrome_data", "/tmp"]
+            chrome_dirs = ["/tmp"]
             
             for base_dir in chrome_dirs:
                 if not os.path.exists(base_dir):
@@ -144,17 +174,23 @@ class SantanderScraper:
                     item_path = os.path.join(base_dir, item)
                     
                     # Only process directories that match our pattern
-                    if os.path.isdir(item_path) and (item.startswith("chrome_") or item.startswith("user_data_")):
+                    if os.path.isdir(item_path) and item.startswith("chrome_"):
                         try:
                             # Get directory creation time
                             ctime = datetime.fromtimestamp(os.path.getctime(item_path))
                             
-                            # Remove if older than 1 hour
-                            if now - ctime > timedelta(hours=1):
+                            # Remove if older than 30 minutes
+                            if now - ctime > timedelta(minutes=30):
                                 shutil.rmtree(item_path, ignore_errors=True)
                                 logger.info(f"Cleaned up old Chrome data directory: {item_path}")
                         except Exception as e:
                             logger.warning(f"Failed to clean up directory {item_path}: {str(e)}")
+                            
+                            # If we can't check the time, try to remove it anyway
+                            try:
+                                shutil.rmtree(item_path, ignore_errors=True)
+                            except:
+                                pass
         except Exception as e:
             logger.warning(f"Error during Chrome data cleanup: {str(e)}")
 
