@@ -14,6 +14,7 @@ import os
 import shutil
 from datetime import datetime, timedelta
 import uuid
+import subprocess
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +56,7 @@ class SantanderScraper:
             chrome_options = Options()
             
             # Server-specific options
-            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--headless=new')  # New headless mode
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--disable-dev-shm-usage')
             chrome_options.add_argument('--disable-gpu')
@@ -64,11 +65,8 @@ class SantanderScraper:
             chrome_options.add_argument('--disable-setuid-sandbox')
             chrome_options.add_argument('--disable-web-security')
             chrome_options.add_argument('--dns-prefetch-disable')
-            chrome_options.add_argument('--remote-debugging-port=9222')
             chrome_options.add_argument('--disable-features=VizDisplayCompositor')
             chrome_options.add_argument('--disable-software-rasterizer')
-            
-            # Additional options to prevent hanging
             chrome_options.add_argument('--no-first-run')
             chrome_options.add_argument('--no-default-browser-check')
             chrome_options.add_argument('--disable-background-networking')
@@ -79,12 +77,14 @@ class SantanderScraper:
             chrome_options.add_argument('--disable-client-side-phishing-detection')
             chrome_options.add_argument('--disable-default-apps')
             chrome_options.add_argument('--disable-prompt-on-repost')
+            chrome_options.add_argument('--remote-debugging-port=9222')
+            
+            # Set binary location explicitly
+            chrome_options.binary_location = '/usr/bin/google-chrome'
             
             # Create unique user data directory
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             unique_id = str(uuid.uuid4())[:8]
-            
-            # Use /tmp for Chrome data to avoid permission issues
             chrome_data_dir = os.path.join("/tmp", f"chrome_{timestamp}_{unique_id}")
             
             try:
@@ -99,11 +99,28 @@ class SantanderScraper:
             
             try:
                 # Use webdriver-manager to handle ChromeDriver installation
-                service = Service(ChromeDriverManager().install())
+                from webdriver_manager.chrome import ChromeDriverManager
+                from selenium.webdriver.chrome.service import Service
+                
+                # Install ChromeDriver with specific version matching Chrome
+                chrome_version = "136.0.7103"  # Major version number
+                driver_path = ChromeDriverManager(version=chrome_version).install()
+                logger.info(f"Using ChromeDriver path: {driver_path}")
+                
+                service = Service(executable_path=driver_path)
                 driver = webdriver.Chrome(service=service, options=chrome_options)
-                logger.info("Chrome WebDriver initialized successfully with webdriver-manager")
+                logger.info("Chrome WebDriver initialized successfully")
+                
                 self.driver = driver
                 self._current_chrome_data_dir = chrome_data_dir
+                
+                # Set page load timeout
+                self.driver.set_page_load_timeout(30)
+                
+                # Add window size logging
+                window_size = self.driver.get_window_size()
+                logger.info(f"Browser window size: {window_size}")
+                
             except Exception as e:
                 logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
                 # Clean up the user data directory if initialization failed
@@ -112,13 +129,6 @@ class SantanderScraper:
                 except:
                     pass
                 raise
-            
-            # Set page load timeout
-            self.driver.set_page_load_timeout(30)
-            
-            # Add window size logging
-            window_size = self.driver.get_window_size()
-            logger.info(f"Browser window size: {window_size}")
             
         except Exception as e:
             logger.error(f"Failed to initialize Chrome WebDriver: {str(e)}")
