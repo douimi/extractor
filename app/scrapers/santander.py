@@ -102,9 +102,9 @@ class SantanderScraper:
                 from webdriver_manager.chrome import ChromeDriverManager
                 from selenium.webdriver.chrome.service import Service
                 
-                # Install ChromeDriver with specific version matching Chrome
-                chrome_version = "136.0.7103"  # Major version number
-                driver_path = ChromeDriverManager(version=chrome_version).install()
+                # Get the major version number for Chrome
+                chrome_version = "136"  # Major version only
+                driver_path = ChromeDriverManager().install()
                 logger.info(f"Using ChromeDriver path: {driver_path}")
                 
                 service = Service(executable_path=driver_path)
